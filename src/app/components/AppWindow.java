@@ -11,10 +11,8 @@ import javax.swing.*;
 public class AppWindow extends JFrame {
 	public AppWindow(JPanel pane) {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // FIXME 
-		
 		CloseCheck closeCheck = new CloseCheck();
-		this.addWindowListener(closeCheck);
-		
+		this.addWindowListener(closeCheck);	
 		getContentPane().add(new MainToolbar(), BorderLayout.NORTH);
 		getContentPane().add(new DrawingViewport(pane), BorderLayout.CENTER);
 		setMinimumSize(new Dimension(600, 480));
