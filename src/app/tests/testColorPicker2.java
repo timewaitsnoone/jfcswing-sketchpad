@@ -1,10 +1,8 @@
 package app.tests;
 
 import java.awt.Color;
-
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-
 import app.component.ColorPicker2;
 import app.util.UITheme;
 

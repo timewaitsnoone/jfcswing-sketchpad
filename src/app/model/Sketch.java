@@ -63,6 +63,7 @@ public class Sketch extends ArrayList<Drawing> {
     public void resize(Dimension size) {
         double sx = size.getWidth()  / this.size.getWidth();
         double sy = size.getHeight() / this.size.getHeight();
+        this.setSize(size);
         for (Drawing drawing : this) {
             drawing.scale(sx, sy, 0.0, 0.0);
         }

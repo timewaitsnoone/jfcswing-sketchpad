@@ -2,7 +2,6 @@ package app.tests;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-
 import app.component.LayeringOpsPane;
 import app.util.UITheme;
 

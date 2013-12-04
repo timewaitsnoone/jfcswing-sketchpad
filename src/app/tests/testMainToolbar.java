@@ -2,10 +2,8 @@ package app.tests;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-
 import app.component.MainToolbar;
 import app.util.UITheme;
 

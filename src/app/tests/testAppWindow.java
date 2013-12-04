@@ -1,9 +1,7 @@
 package app.tests;
 
 import java.awt.*;
-
 import javax.swing.*;
-
 import app.component.*;
 import app.util.*;
 
