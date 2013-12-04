@@ -1,10 +1,12 @@
 package app.tests;
 
 import java.awt.GridBagLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import app.components.SettingsPanel;
+
+import app.component.SettingsPanel;
 import app.util.UITheme;
 
 public class testSettingsPanel {

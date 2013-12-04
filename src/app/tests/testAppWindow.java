@@ -1,8 +1,10 @@
 package app.tests;
 
 import java.awt.*;
+
 import javax.swing.*;
-import app.components.*;
+
+import app.component.*;
 import app.util.*;
 
 public class testAppWindow {

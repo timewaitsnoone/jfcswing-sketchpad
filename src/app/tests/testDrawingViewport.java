@@ -7,10 +7,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import app.components.DrawingViewport;
+
+import app.component.DrawingViewport;
 import app.util.UITheme;
 
 public class testDrawingViewport {

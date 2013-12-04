@@ -1,8 +1,10 @@
 package app.util;
 
 import java.awt.*;
+
 import javax.swing.*;
-import app.components.*;
+
+import app.component.*;
 
 /**
  * This static class contains a collection of commonly

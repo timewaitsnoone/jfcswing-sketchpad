@@ -1,9 +1,11 @@
 package app.tests;
 
 import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import app.components.ColorPicker;
+
+import app.component.ColorPicker;
 import app.util.UITheme;
 
 public class testColorPicker {

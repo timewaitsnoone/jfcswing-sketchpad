@@ -1,4 +1,4 @@
-package app.components;
+package app.component;
 
 import app.util.*;
 

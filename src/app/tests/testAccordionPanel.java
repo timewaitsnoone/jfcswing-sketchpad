@@ -1,12 +1,14 @@
 package app.tests;
 
 import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import app.components.AccordionPanel;
-import app.components.ColorPicker;
-import app.components.DrawingSelectionPane;
-import app.components.SettingsPanel;
+
+import app.component.AccordionPanel;
+import app.component.ColorPicker;
+import app.component.DrawingSelectionPane;
+import app.component.SettingsPanel;
 import app.util.UITheme;
 
 public class testAccordionPanel {

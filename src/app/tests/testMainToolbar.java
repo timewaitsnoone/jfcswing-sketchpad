@@ -2,9 +2,11 @@ package app.tests;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import app.components.MainToolbar;
+
+import app.component.MainToolbar;
 import app.util.UITheme;
 
 public class testMainToolbar {

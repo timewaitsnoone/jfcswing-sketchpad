@@ -1,10 +1,12 @@
 package app.tests;
 
 import java.awt.*;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import app.components.DrawingViewport;
+
+import app.component.DrawingViewport;
 import app.drawing.shape.*;
 import app.util.UITheme;
 

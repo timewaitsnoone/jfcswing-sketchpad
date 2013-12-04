@@ -4,9 +4,10 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import app.components.ColorPicker;
-import app.components.SettingsPanel;
-import app.components.TabbedPane;
+
+import app.component.ColorPicker;
+import app.component.SettingsPanel;
+import app.component.TabbedPane;
 import app.util.UITheme;
 
 public class testTabbedPane {
