@@ -4,18 +4,16 @@ import java.beans.*;
 import java.util.*;
 
 /**
- * This class maintains the state of the application.
+ * This class maintains the state of an entity.
  * Notifies the listeners of the changes in state.
  */
 public class StateManager {
 
-	public final static StateManager SELF = new StateManager(); // singleton
-
     private PropertyChangeSupport notifier = new PropertyChangeSupport(this);
     private Map<String, Object> properties = new HashMap<String, Object>(); 
 
-    private StateManager() {} // no public constructor
- 
+    public StateManager() {}
+
     /**
      * Returns true if the given property is set,
      * false otherwise.

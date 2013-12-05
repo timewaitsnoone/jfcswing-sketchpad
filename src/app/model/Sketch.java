@@ -82,6 +82,18 @@ public class Sketch extends ArrayList<Drawing> {
     }
 
     /**
+     * Serializes the sketch to a XML file.
+     * Returns true if successful, false otherwise.
+     *
+     * @param file      output file to serialize sketch.
+     * @return 			true if successful, false otherwise.
+     */
+    public boolean saveAs(File file) {
+        setFile(file);
+        return save();
+    }
+
+    /**
      * Serializes the sketch as an image file.
      * Returns true if successful, false otherwise.
      *
