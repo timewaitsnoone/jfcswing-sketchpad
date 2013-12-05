@@ -2,52 +2,60 @@ package app.drawing;
 
 import java.awt.*;
 import java.awt.geom.*;
-import java.io.Serializable;
+import org.w3c.dom.*;
 
 /**
- * This interface defines the commonly shared method
- * headers of drawings.
- */
-public interface Drawing extends Shape, Serializable {
+* This interface defines the commonly shared method
+* headers of drawings.
+*/
+public interface Drawing extends Shape {
 
-	/**
-	 * Invoked by application to paint drawing to the display.
-	 *
-	 * @param g 	the Graphics context in which to paint
-	 */
-	public void draw(Graphics2D g);
+    /**
+     * Invoked by application to paint drawing to the display.
+     *
+     * @param g 	the Graphics context in which to paint
+     */
+    public void draw(Graphics2D g);
 
-	/**
-	 * Transforms the drawing with the given affine
-	 * transformation.
-	 *
-	 * @param at   the transformation
+    /**
+     * Generates the XML Node representing the drawing.
+     * @param doc TODO
+     *
+     * @return the XML Node representing the drawing.
+     */
+    public Node getXMLNode(Document doc);
+
+    /**
+     * Transforms the drawing with the given affine
+     * transformation.
+     *
+     * @param at   the transformation
      * @return     the transformation applied
-	 */
+     */
     public AffineTransform transform(AffineTransform at);
 
-	/**
-	 * Transforms the drawing with the given affine
-	 * transformation above the center of the drawing object.
-	 *
-	 * @param at   the transformation
+    /**
+     * Transforms the drawing with the given affine
+     * transformation above the center of the drawing object.
+     *
+     * @param at   the transformation
      * @return     the transformation applied
-	 */
+     */
     public AffineTransform transformOnCenter(AffineTransform at);
 
-	/**
-	 * Transforms the drawing with the given affine
-	 * transformation above the given anchor point.
-	 *
-	 * @param at   		the transformation
+    /**
+     * Transforms the drawing with the given affine
+     * transformation above the given anchor point.
+     *
+     * @param at   		the transformation
      * @param anchorx   the X coordinate of the anchor point
      * @param anchory   the Y coordinate of the anchor point
      * @return     		the transformation applied
-	 */
+     */
     public AffineTransform transform(AffineTransform at,
-    					double anchorx, double anchory);
+                                double anchorx, double anchory);
 
-	/**
+    /**
      * Transforms the drawing with a translation transformation.
      * This is equivalent to calling transform(T), where T is an
      * <code>AffineTransform</code> represented by the following matrix:
@@ -65,8 +73,8 @@ public interface Drawing extends Shape, Serializable {
      */
     public AffineTransform translate(double tx, double ty);
 
-	/**
-     * Transforms the drawing with a rotation transformation above the 
+    /**
+     * Transforms the drawing with a rotation transformation above the
      * center of the drawing object.
      * Rotating by a positive angle theta rotates points on the positive
      * X axis toward the positive Y axis.
@@ -150,7 +158,7 @@ public interface Drawing extends Shape, Serializable {
      * @return           the transformation applied
      */
     public AffineTransform rotate(double vecx, double vecy,
-                       double anchorx, double anchory);
+                                double anchorx, double anchory);
 
     /**
      * Transforms the drawing with a transform that rotates
@@ -184,9 +192,9 @@ public interface Drawing extends Shape, Serializable {
      * @return              the transformation applied
      */
     public AffineTransform quadrantRotate(int numquadrants,
-                       double anchorx, double anchory);
+                                double anchorx, double anchory);
 
-	/**
+    /**
      * Transforms the drawing with a scaling transformation with origin
      * at the top-left corner of the drawing.
      *
@@ -196,9 +204,9 @@ public interface Drawing extends Shape, Serializable {
      *              Y axis direction
      * @return      the transformation applied
      */
-	public AffineTransform scale(double sx, double sy);
+    public AffineTransform scale(double sx, double sy);
 
-	/**
+    /**
      * Transforms the drawing with a scaling transformation.
      * This operation is equivalent to the following sequence of calls:
      * <pre>
@@ -215,10 +223,10 @@ public interface Drawing extends Shape, Serializable {
      * @param anchory   the Y coordinate of the scaling anchor point
      * @return      	the transformation applied
      */
-	public AffineTransform scale(double sx, double sy,
-						double anchorx, double anchory);
+    public AffineTransform scale(double sx, double sy,
+                                double anchorx, double anchory);
 
-	/**
+    /**
      * Transforms the drawing with a scaling transformation with origin
      * at the center of the drawing.
      *
@@ -228,7 +236,7 @@ public interface Drawing extends Shape, Serializable {
      *              Y axis direction
      * @return      the transformation applied
      */
-	public AffineTransform scaleOnCenter(double sx, double sy);
+    public AffineTransform scaleOnCenter(double sx, double sy);
 
     /**
      * Transforms the drawing with a shearing transformation with origin
@@ -240,7 +248,7 @@ public interface Drawing extends Shape, Serializable {
      *              direction of the positive Y axis as a factor of their X coordinate
      * @return      the transformation applied
      */
-	public AffineTransform shear(double shx, double shy);	
+    public AffineTransform shear(double shx, double shy);
 
     /**
      * Transforms the drawing with a shearing transformation with origin
@@ -252,7 +260,7 @@ public interface Drawing extends Shape, Serializable {
      *              direction of the positive Y axis as a factor of their X coordinate
      * @return      the transformation applied
      */
-	public AffineTransform shearOnCenter(double shx, double shy);
+    public AffineTransform shearOnCenter(double shx, double shy);
 
     /**
      * Transforms the drawing with a shearing transformation.
@@ -271,41 +279,41 @@ public interface Drawing extends Shape, Serializable {
      * @param anchory   the Y coordinate of the shearing anchor point
      * @return      	the transformation applied
      */
-	public AffineTransform shear(double shx, double shy,
-						double anchorx, double anchory);
+    public AffineTransform shear(double shx, double shy,
+                                double anchorx, double anchory);
 
-	/**
-	 * Transforms the drawing with a horizontal reflection
-	 * with the given Y-axis.
-	 * 
-	 * @param x	   	the x value of the Y axis
-	 * @return     	the transformation applied
-	 */
-	public AffineTransform reflectHorizontal(double y);
+    /**
+     * Transforms the drawing with a horizontal reflection
+     * with the given Y-axis.
+     *
+     * @param x	   	the x value of the Y axis
+     * @return     	the transformation applied
+     */
+    public AffineTransform reflectHorizontal(double y);
 
-	/**
-	 * Transforms the drawing with a vertical reflection
-	 * with the Y-axis at the center of the drawing.
-	 * 
-	 * @return     	the transformation applied
-	 */
-	public AffineTransform reflectHorizontal();
+    /**
+     * Transforms the drawing with a vertical reflection
+     * with the Y-axis at the center of the drawing.
+     *
+     * @return     	the transformation applied
+     */
+    public AffineTransform reflectHorizontal();
 
-	/**
-	 * Transforms the drawing with a vertical reflection
-	 * with the given X-axis.
-	 * 
-	 * @param y	   	the y value of X axis
-	 * @return     	the transformation applied
-	 */
-	public AffineTransform reflectVertical(double x);
-	
-	/**
-	 * Transforms the drawing with a vertical reflection
-	 * with the X-axis at the center of the drawing.
-	 * 
-	 * @return     	the transformation applied
-	 */
-	public AffineTransform reflectVertical();
+    /**
+     * Transforms the drawing with a vertical reflection
+     * with the given X-axis.
+     *
+     * @param y	   	the y value of X axis
+     * @return     	the transformation applied
+     */
+    public AffineTransform reflectVertical(double x);
+
+    /**
+     * Transforms the drawing with a vertical reflection
+     * with the X-axis at the center of the drawing.
+     *
+     * @return     	the transformation applied
+     */
+    public AffineTransform reflectVertical();
 
 } // Drawing
