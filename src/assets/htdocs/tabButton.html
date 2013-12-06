@@ -2,20 +2,14 @@
   <head>
     <style type="text/css">
       body {text-align: center;}
-      .icon {
+      .icon, .iconPreview {
           font-family: Canvas;
-          font-size: 16px;}
-      .labelNoColor, .labelColor {
-          padding-top: 5px;
-          padding-bottom: 2px;
-          display: inline-block;}
-      .labelColor {
-          width: 40px;
+          font-size: 12px;}
+      .iconPreview {
           border-bottom: 4px solid #{HEXCOLOR};}
     </style>
   </head>
   <body>
-    <p class="icon">{ICON}</p>
-    <p class="label{SWITCH}Color">{LABEL}</p>
+    <p class="icon{SWITCH}">{ICON}</p>
   </body>
 </html>

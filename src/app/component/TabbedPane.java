@@ -70,7 +70,7 @@ public class TabbedPane extends JPanel {
             }
             TabButton tab = (TabButton)constraint;
             PANELS.put(tab, comp);
-            TOOLBAR.setLayout(new GridLayout(1, PANELS.size()));
+            //TOOLBAR.setLayout(new GridLayout(1, PANELS.size()));
             TOOLBAR.add(tab, idx);
             BGROUP.add(tab);
             super.addImpl(comp, GBC, idx + 1);
@@ -146,7 +146,6 @@ public class TabbedPane extends JPanel {
      */
     public class TabButton extends JToggleButton implements ItemListener {
 
-        private String label;
         private String icon;
         private Color colorPreview;
 
@@ -159,15 +158,16 @@ public class TabbedPane extends JPanel {
          * @param colorPreview      the color to display as a preview
          */
         public TabButton(String id, String label, String icon, Color colorPreview) {
-        	this.label = label;
             this.icon = icon;
             this.colorPreview = colorPreview;
             updateText();
             setActionCommand(id);
             setName(id);
-            setMargin(new Insets(5, 0, 5, 0));
+            setMargin(new Insets(5, 5, 5, 5));
+            setPreferredSize(new Dimension(40, 40));
             addItemListener(this);
             setRequestFocusEnabled(true);
+            setToolTipText(label);
         }
 
         /**
@@ -199,8 +199,7 @@ public class TabbedPane extends JPanel {
          * @param label      to display on the button
          */
         @Override public void setLabel(String label) {
-            this.label = label;
-            updateText();
+            setToolTipText(label);
         }
 
         /**
@@ -232,8 +231,8 @@ public class TabbedPane extends JPanel {
             String iconGlyph = MyFont.ICONS.get(icon);
             setText(HTML
                 .replace("{ICON}", iconGlyph != null ? iconGlyph : " ")
-                .replace("{LABEL}", label)
-                .replace("{SWITCH}", showPreview ? "" : "No")
+                //.replace("{LABEL}", label)
+                .replace("{SWITCH}", showPreview ? "Preview" : "")
                 .replace("{HEXCOLOR}", color));
         }
 
