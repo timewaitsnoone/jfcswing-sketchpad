@@ -13,16 +13,7 @@ public class AppWindow extends JFrame {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			@Override public void windowClosing(WindowEvent e) {
-				int optionSelected = JOptionPane.showConfirmDialog(null,
-						"Do you want to save changes?", "Warning!",
-						JOptionPane.YES_NO_CANCEL_OPTION,
-						JOptionPane.WARNING_MESSAGE);
-				if (optionSelected == 0) {
-					//TODO Call Save Command
-					System.exit(0);
-				} else if (optionSelected == 1) {
-					System.exit(0);
-				}
+				//App.requestClose();
 			}
 		});	
 		getContentPane().add(new MainToolbar(), BorderLayout.NORTH);
