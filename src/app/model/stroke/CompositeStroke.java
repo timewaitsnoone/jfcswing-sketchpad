@@ -1,4 +1,4 @@
-package app.drawing.strokes;
+package app.model.stroke;
 
 import java.awt.*;
 

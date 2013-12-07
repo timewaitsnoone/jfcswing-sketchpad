@@ -1,4 +1,4 @@
-package app.drawing.strokes;
+package app.model.stroke;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -6,7 +6,6 @@ import java.awt.geom.*;
 public class ShapeStroke implements Stroke {
 	private Shape shapes[];
 	private float advance;
-	private boolean stretchToFit = false;
 	private boolean repeat = true;
 	private AffineTransform t = new AffineTransform();
 	private static final float FLATNESS = 1;
@@ -34,12 +33,9 @@ public class ShapeStroke implements Stroke {
 		float lastX = 0, lastY = 0;
 		float thisX = 0, thisY = 0;
 		int type = 0;
-		boolean first = false;
 		float next = 0;
 		int currentShape = 0;
 		int length = shapes.length;
-
-		float factor = 1;
 
 		while ( currentShape < length && !it.isDone() ) {
 			type = it.currentSegment( points );
@@ -48,7 +44,6 @@ public class ShapeStroke implements Stroke {
 				moveX = lastX = points[0];
 				moveY = lastY = points[1];
 				result.moveTo( moveX, moveY );
-				first = true;
 				next = 0;
 				break;
 
@@ -79,7 +74,6 @@ public class ShapeStroke implements Stroke {
 					}
 				}
 				next -= distance;
-				first = false;
 				lastX = thisX;
 				lastY = thisY;
 				break;

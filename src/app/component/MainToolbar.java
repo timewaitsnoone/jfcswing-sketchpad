@@ -37,7 +37,7 @@ public class MainToolbar extends JToolBar {
 			leftGroup.add(buttons.get("NEW"));
 			leftGroup.add(buttons.get("OPEN"));
 			leftGroup.add(buttons.get("SAVE"));
-			//leftGroup.add(buttons.get("PRINT"));
+//			leftGroup.add(buttons.get("PRINT"));
 			leftGroup.addSeparator();
             leftGroup.add(buttons.get("UNDO"));
             leftGroup.add(buttons.get("REDO"));
@@ -55,29 +55,27 @@ public class MainToolbar extends JToolBar {
 					}
 				}); // addItemListener
 			leftGroup.addSeparator();
-			//leftGroup.add(buttons.get("STYLE"));
-			//leftGroup.add(buttons.get("LAYERS"));
-			//leftGroup.addSeparator();
+//			leftGroup.add(buttons.get("STYLE"));
+//			leftGroup.add(buttons.get("LAYERS"));
+//			leftGroup.addSeparator();
 			leftGroup.setFloatable(false);
 			leftGroup.setOpaque(false);
 		add(leftGroup, BorderLayout.WEST);
 		JToolBar rightGroup = new JToolBar();
         ButtonGroup rightButtonGroup = new ButtonGroup();
 			rightGroup.addSeparator();
-			//rightButtonGroup.add((AbstractButton)rightGroup.add(buttons.get("LIBRARY")));
+//			rightButtonGroup.add((AbstractButton)rightGroup.add(buttons.get("LIBRARY")));
 			rightButtonGroup.add((AbstractButton)rightGroup.add(buttons.get("SETTINGS")));
 			rightGroup.setFloatable(false);
 			rightGroup.setOpaque(false);
 		add(rightGroup, BorderLayout.EAST);
         // popups 
         JToolBar drawingModePane   = new DrawingSelectionPane(buttons.get("DRAW"));
-        //JPanel   stylingPane       = new StylingPane(buttons.get("STYLE"));
-        //JToolBar layeringPane      = new LayeringOpsPane(buttons.get("LAYERS"));
+//		JToolBar layeringPane      = new LayeringOpsPane(buttons.get("LAYERS"));
         JPanel   settingPane       = new SettingsPanel();
         // attach popups
         UIToolbox.attachPopupPane(buttons.get("DRAW")     , drawingModePane, modeGroup       , PopupPane.CENTER, false);
-        //UIToolbox.attachPopupPane(buttons.get("STYLE")    , stylingPane    , null            , PopupPane.CENTER, true );
-        //UIToolbox.attachPopupPane(buttons.get("LAYERS")   , layeringPane   , null            , PopupPane.CENTER, true );
+//		UIToolbox.attachPopupPane(buttons.get("LAYERS")   , layeringPane   , null            , PopupPane.CENTER, true );
         UIToolbox.attachPopupPane(buttons.get("SETTINGS") , settingPane    , rightButtonGroup, PopupPane.RIGHT , true );
 	}
 

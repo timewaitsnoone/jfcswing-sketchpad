@@ -22,6 +22,13 @@ public class PopupPane
     public static final int CENTER  = 2;
     public static final int RIGHT   = 3;
 
+    public static final int TOP_LEFT      = TOP    * LEFT;
+    public static final int TOP_CENTER    = TOP    * CENTER;
+    public static final int TOP_RIGHT     = TOP    * RIGHT;
+    public static final int BOTTOM_LEFT   = BOTTOM * LEFT;
+    public static final int BOTTOM_CENTER = BOTTOM * CENTER;
+    public static final int BOTTOM_RIGHT  = BOTTOM * RIGHT;
+
     private final Component popupPanel;
 
     private InvokerMouseListener mouseListener = new InvokerMouseListener();
@@ -168,22 +175,30 @@ public class PopupPane
      * Invoke / Show the popup.
      */
     private void invokePopup() {
-        int width = getWidth();
-        int prefWidth = popupPanel.getPreferredSize().width;
-        int x = 0;
-        switch (Math.abs(orientation)) {
-            case CENTER:
-                x = (invoker.getWidth() - ((width > 0) ? width : prefWidth)) / 2;
-                break;
-            case RIGHT:
-                x = invoker.getWidth() - ((width > 0) ? width : prefWidth);
-                break;
-        }
         if (invoker == null) {
         	show(null, 0, 0);
-        } else {
-        	show(invoker, x, (orientation < 0) ? 0 : invoker.getHeight());
+        	return;
         }
+        int width = getWidth();
+        int height = getHeight();
+        int prefWidth = popupPanel.getPreferredSize().width;
+        int prefHeight = popupPanel.getPreferredSize().height;
+        int x = 0;
+        if (height <= 0) {
+        	height = prefHeight;
+        }
+        if (width <= 0) {
+        	width = prefWidth;
+        }
+        switch (Math.abs(orientation)) {
+            case CENTER:
+                x = (invoker.getWidth() - width) / 2;
+                break;
+            case RIGHT:
+                x = invoker.getWidth() - width;
+                break;
+        }
+    	show(invoker, x, orientation < 0 ? -height : invoker.getHeight());
     }
 
     /**

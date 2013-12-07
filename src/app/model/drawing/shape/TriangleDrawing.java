@@ -1,11 +1,11 @@
-package app.drawing.shape;
+package app.model.drawing.shape;
 
-import app.drawing.*;
+import app.model.drawing.*;
 
-/** Right Triangle drawing. */
-public class RightTriangleDrawing extends ShapeDrawing {
+/** Triangle drawing. */
+public class TriangleDrawing extends ShapeDrawing {
 	/**
-	 * Constructs and initializes an RightTriangleDrawing
+	 * Constructs and initializes an TriangleDrawing
      * from the specified coordinates.
 	 *
      * @param x 	the X coordinate of the upper-left corner of the framing rectangle
@@ -13,12 +13,12 @@ public class RightTriangleDrawing extends ShapeDrawing {
      * @param w 	the width of the framing rectangle
      * @param h 	the height of the framing rectangle
 	 */
-	public RightTriangleDrawing(double x, double y, double w, double h) {
+	public TriangleDrawing(double x, double y, double w, double h) {
 		super(new PathDrawing()
-			.moveTo(x, y)
+			.moveTo(x, y + h)
 			.lineTo(x + w, y + h)
-			.lineTo(x, y + h)
+			.lineTo(x + w/2, y)
 			.closePath()
 			.getShape());
 	}
-} // RightTriangleDrawing
+} // TriangleDrawing

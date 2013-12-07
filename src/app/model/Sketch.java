@@ -3,7 +3,8 @@ package app.model;
 import java.awt.*;
 import java.io.*;
 import java.util.*;
-import app.drawing.*;
+
+import app.model.drawing.*;
 
 /**
  * This class implements the document object model.

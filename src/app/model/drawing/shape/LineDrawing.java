@@ -1,7 +1,8 @@
-package app.drawing.shape;
+package app.model.drawing.shape;
 
 import java.awt.geom.*;
-import app.drawing.*;
+
+import app.model.drawing.*;
 
 /** Line drawing. */
 public class LineDrawing extends ShapeDrawing {

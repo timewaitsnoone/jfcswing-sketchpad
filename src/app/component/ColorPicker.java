@@ -18,8 +18,7 @@ import javax.swing.event.*;
  * and modify the ColorChooserPanel directly to suit our needs.
  */
 public class ColorPicker
-	extends JPanel
-	implements PaintPicker {
+	extends JPanel {
 
 	protected final GridBagConstraints GBC = new GridBagConstraints();
     protected JColorChooser chooser;
@@ -183,17 +182,7 @@ public class ColorPicker
      *
      * @return the current color value of the color chooser
      */
-    @Override public Color getColor() {
-		return this.chooser.getColor();
-	}
-
-    /**
-     * Gets the current paint object from the color chooser.
-     * By default, this delegates to the model.
-     *
-     * @return the current paint object of the color chooser
-     */
-    @Override public Paint getPaint() {
+    public Color getColor() {
 		return this.chooser.getColor();
 	}
 
@@ -202,7 +191,7 @@ public class ColorPicker
      *
      * @return a <code>ColorSelectionModel</code> object
      */
-    @Override public ColorSelectionModel getSelectionModel() {
+    public ColorSelectionModel getSelectionModel() {
 		return this.csmodel;
 	}
 

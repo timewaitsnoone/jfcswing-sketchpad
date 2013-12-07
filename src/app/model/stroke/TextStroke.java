@@ -1,4 +1,4 @@
-package app.drawing.strokes;
+package app.model.stroke;
 
 import java.awt.*;
 import java.awt.font.*;
@@ -35,7 +35,6 @@ public class TextStroke implements Stroke {
 		float lastX = 0, lastY = 0;
 		float thisX = 0, thisY = 0;
 		int type = 0;
-		boolean first = false;
 		float next = 0;
 		int currentChar = 0;
 		int length = glyphVector.getNumGlyphs();
@@ -53,8 +52,7 @@ public class TextStroke implements Stroke {
 				moveX = lastX = points[0];
 				moveY = lastY = points[1];
 				result.moveTo( moveX, moveY );
-				first = true;
-                nextAdvance = glyphVector.getGlyphMetrics( currentChar ).getAdvance() * 0.5f;
+				nextAdvance = glyphVector.getGlyphMetrics( currentChar ).getAdvance() * 0.5f;
                 next = nextAdvance;
 				break;
 
@@ -92,7 +90,6 @@ public class TextStroke implements Stroke {
 					}
 				}
                 next -= distance;
-				first = false;
 				lastX = thisX;
 				lastY = thisY;
 				break;

@@ -1,7 +1,8 @@
-package app.drawing.shape;
+package app.model.drawing.shape;
 
 import java.awt.geom.*;
-import app.drawing.*;
+
+import app.model.drawing.*;
 
 /** Quad Curve drawing. */
 public class QuadCurveDrawing extends ShapeDrawing {

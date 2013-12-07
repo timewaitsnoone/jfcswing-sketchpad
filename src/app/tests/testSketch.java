@@ -6,22 +6,24 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+
 import app.component.DrawingViewport;
-import app.drawing.Drawing;
-import app.drawing.shape.ArcDrawing;
-import app.drawing.shape.CubicCurveDrawing;
-import app.drawing.shape.EllipseDrawing;
-import app.drawing.shape.LineDrawing;
-import app.drawing.shape.PathDrawing;
-import app.drawing.shape.QuadCurveDrawing;
-import app.drawing.shape.RectangleDrawing;
-import app.drawing.shape.RightTriangleDrawing;
-import app.drawing.shape.RoundRectangleDrawing;
-import app.drawing.shape.TriangleDrawing;
 import app.model.Sketch;
+import app.model.drawing.Drawing;
+import app.model.drawing.shape.ArcDrawing;
+import app.model.drawing.shape.CubicCurveDrawing;
+import app.model.drawing.shape.EllipseDrawing;
+import app.model.drawing.shape.LineDrawing;
+import app.model.drawing.shape.PathDrawing;
+import app.model.drawing.shape.QuadCurveDrawing;
+import app.model.drawing.shape.RectangleDrawing;
+import app.model.drawing.shape.RightTriangleDrawing;
+import app.model.drawing.shape.RoundRectangleDrawing;
+import app.model.drawing.shape.TriangleDrawing;
 import app.util.UITheme;
 
 public class testSketch {

@@ -1,4 +1,4 @@
-package app.drawing;
+package app.model.drawing;
 
 import java.awt.*;
 import java.awt.geom.*;

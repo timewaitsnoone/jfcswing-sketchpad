@@ -1,7 +1,8 @@
-package app.drawing.shape;
+package app.model.drawing.shape;
 
 import java.awt.geom.*;
-import app.drawing.*;
+
+import app.model.drawing.*;
 
 /** Round Rectangle drawing. */
 public class RoundRectangleDrawing extends ShapeDrawing {
