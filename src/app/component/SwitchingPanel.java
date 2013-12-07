@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
 
 /**
  * SwitchingPanel is a custom UI component that provides collapsible panels
@@ -67,7 +66,7 @@ public class SwitchingPanel
         String label = constraint == null ? "Panel " + (idx + 1) : constraint.toString();
     	JRadioButton rb = new JRadioButton(label);
     	PANELS.put(rb, panel);
-        buttonPanel.add(rb, GBC);
+        buttonPanel.add(rb, GBC, idx);
         buttonGroup.add(rb);
         rb.addItemListener(this);
     	super.addImpl(panel, GBC, idx + 1);
@@ -79,9 +78,6 @@ public class SwitchingPanel
     			button.setPreferredSize(new Dimension(width,
     					button.getPreferredSize().height));
     		}
-    	}
-    	if (panel instanceof JPanel) {
-    		((JPanel)panel).setBorder(new EtchedBorder());
     	}
         panel.setVisible(false); // init closed
     }

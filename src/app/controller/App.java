@@ -87,9 +87,8 @@ public class App {
      *      Triangle
      *      RightTriangle
      *
-     * fillColor        Color       the current fill Color
-     * lineColor        Color       the current line Color
-     * lineStroke       Stroke      the current line/stroke object
+     * shapeStyle		ShapeStyle	styling object for shape drawing.
+     * textStyle		TextStyle	styling object for text drawing.
      */
     private static final Map<String, Object> properties =
             new HashMap<String, Object>();

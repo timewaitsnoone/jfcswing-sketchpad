@@ -34,6 +34,7 @@ public class ColorPickerButton extends JToggleButton {
 			}
 		}); // addChangeListener
 		updateText();
+		setMargin(new Insets(5, 10, 5, 10));
 	}
 
     /** Refreshes the display on the button. */
