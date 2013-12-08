@@ -3,8 +3,6 @@ package app.drawing;
 import java.awt.*;
 import java.awt.geom.*;
 
-import org.w3c.dom.*;
-
 /**
  * This class provide a wrapper over a Shape
  * object. Associates a paint fill and stroke for the
@@ -92,21 +90,6 @@ public class ShapeDrawing implements Drawing {
 		g2d.dispose();
 	} // draw
 
-	@Override public Node getXMLNode(Document doc) {
-		Node node = doc.createElement("shape");
-		//NamedNodeMap attrs = node.getAttributes();
-		//Attr data = doc.createAttribute("data");
-		//Attr fill = doc.createAttribute("fill");
-		//Attr stroke = doc.createAttribute("stroke");
-			//data.setValue();
-			//fill.setValue();
-			//stroke.setValue();
-		//attrs.setNamedItem(data);
-		//attrs.setNamedItem(fill);
-		//attrs.setNamedItem(stroke);
-		return node;
-	}
-
 	// Transformations
 
 	@Override public AffineTransform transform(AffineTransform at) {
@@ -191,6 +174,7 @@ public class ShapeDrawing implements Drawing {
 		private Color fill;
 		private Color line;
 		private Stroke stroke;
+		public Style() {}
 		public Style(Color fill, Color line, Stroke stroke) {
 			this.fill = fill;
 			this.line = line;

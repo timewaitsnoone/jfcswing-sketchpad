@@ -3,7 +3,10 @@ package app.component;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+
 import javax.swing.*;
+
+import app.main.AppConfig;
 import app.util.*;
 
 /**
@@ -35,7 +38,7 @@ public class DrawingSelectionPane extends JToolBar {
 		BGROUP = new ButtonGroup();
 			BGROUP.add((AbstractButton)add(BUTTONS.get("LINE")));
 			BGROUP.add((AbstractButton)add(BUTTONS.get("FREEHAND")));
-			BGROUP.add((AbstractButton)add(BUTTONS.get("CURVE")));
+			//BGROUP.add((AbstractButton)add(BUTTONS.get("CURVE")));
 			BGROUP.add((AbstractButton)add(BUTTONS.get("RECT")));
 			BGROUP.add((AbstractButton)add(BUTTONS.get("RRECT")));
 			BGROUP.add((AbstractButton)add(BUTTONS.get("OVAL")));
@@ -49,6 +52,20 @@ public class DrawingSelectionPane extends JToolBar {
 					if (button.isSelected()) {
 						getParent().setVisible(false);
 						if (invoker != null) {invoker.setText(button.getText());}
+						String action = button.getActionCommand();
+						if ("LINE".equals(action)) {
+							AppConfig.mode = AppConfig.Mode.LINE;
+						} else if ("FREEHAND".equals(action)) {
+							AppConfig.mode = AppConfig.Mode.FREEHAND;
+						} else if ("RECT".equals(action)) {
+							AppConfig.mode = AppConfig.Mode.RECTANGLE;
+						} else if ("RRECT".equals(action)) {
+							AppConfig.mode = AppConfig.Mode.ROUNDRECT;
+						} else if ("OVAL".equals(action)) {
+							AppConfig.mode = AppConfig.Mode.OVAL;
+						} else if ("POLYGON".equals(action)) {
+							AppConfig.mode = AppConfig.Mode.POLYGON;
+						}
 					}
 				}
 			}); // addActionListener

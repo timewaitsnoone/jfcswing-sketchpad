@@ -1,9 +1,12 @@
 package app.component;
 
+import app.main.AppConfig;
 import app.util.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+
 import javax.swing.*;
 
 /**
@@ -34,18 +37,19 @@ public class MainToolbar extends JToolBar {
 		setLayout(new BorderLayout());
 		configButtons();
 		JToolBar leftGroup = new JToolBar();
-			leftGroup.add(buttons.get("NEW"));
-			leftGroup.add(buttons.get("OPEN"));
 			leftGroup.add(buttons.get("SAVE"));
-//			leftGroup.add(buttons.get("PRINT"));
 			leftGroup.addSeparator();
-            leftGroup.add(buttons.get("UNDO"));
-            leftGroup.add(buttons.get("REDO"));
-            leftGroup.addSeparator();
             ButtonGroup modeGroup = new ButtonGroup();
             	modeGroup.add((AbstractButton)leftGroup.add(buttons.get("SELECT")));
             	modeGroup.add((AbstractButton)leftGroup.add(buttons.get("DRAW")));
             	buttons.get("SELECT").setSelected(true);
+            	buttons.get("SELECT").addItemListener(new ItemListener() {
+            		@Override public void itemStateChanged(ItemEvent e) {
+            			if (buttons.get("SELECT").isSelected()) {
+            				AppConfig.mode = AppConfig.Mode.SELECT;
+            			}
+            		}
+            	}); // addItemListener
             	buttons.get("DRAW").addItemListener(new ItemListener() {
             		private final String original = buttons.get("DRAW").getText();
             		@Override public void itemStateChanged(ItemEvent e) {
@@ -55,28 +59,21 @@ public class MainToolbar extends JToolBar {
 					}
 				}); // addItemListener
 			leftGroup.addSeparator();
-//			leftGroup.add(buttons.get("STYLE"));
-//			leftGroup.add(buttons.get("LAYERS"));
-//			leftGroup.addSeparator();
 			leftGroup.setFloatable(false);
 			leftGroup.setOpaque(false);
 		add(leftGroup, BorderLayout.WEST);
 		JToolBar rightGroup = new JToolBar();
-        ButtonGroup rightButtonGroup = new ButtonGroup();
 			rightGroup.addSeparator();
-//			rightButtonGroup.add((AbstractButton)rightGroup.add(buttons.get("LIBRARY")));
-			rightButtonGroup.add((AbstractButton)rightGroup.add(buttons.get("SETTINGS")));
+            rightGroup.add(buttons.get("SETTINGS"));
 			rightGroup.setFloatable(false);
 			rightGroup.setOpaque(false);
 		add(rightGroup, BorderLayout.EAST);
-        // popups 
+        // popups
         JToolBar drawingModePane   = new DrawingSelectionPane(buttons.get("DRAW"));
-//		JToolBar layeringPane      = new LayeringOpsPane(buttons.get("LAYERS"));
         JPanel   settingPane       = new SettingsPanel();
         // attach popups
-        UIToolbox.attachPopupPane(buttons.get("DRAW")     , drawingModePane, modeGroup       , PopupPane.CENTER, false);
-//		UIToolbox.attachPopupPane(buttons.get("LAYERS")   , layeringPane   , null            , PopupPane.CENTER, true );
-        UIToolbox.attachPopupPane(buttons.get("SETTINGS") , settingPane    , rightButtonGroup, PopupPane.RIGHT , true );
+        UIToolbox.attachPopupPane(buttons.get("DRAW")     , drawingModePane, modeGroup, PopupPane.CENTER, false);
+        UIToolbox.attachPopupPane(buttons.get("SETTINGS") , settingPane    , null     , PopupPane.RIGHT , true );
 	}
 
 } // MainToolbar

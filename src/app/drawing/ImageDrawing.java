@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.awt.image.*;
 import javax.imageio.*;
-import org.w3c.dom.*;
 
 /**
  * This class implements a image drawing.
@@ -67,21 +66,6 @@ public class ImageDrawing implements Drawing {
 	@Override public void draw(Graphics2D g) {
         // TODO
     }
-
-	@Override public Node getXMLNode(Document doc) {
-		Node node = doc.createElement("image");
-		//NamedNodeMap attrs = node.getAttributes();
-		//Attr data = doc.createAttribute("data");
-		//Attr bound = doc.createAttribute("bound");
-		//Attr transform = doc.createAttribute("transform");
-			//data.setValue();
-			//bound.setValue();
-			//transform.setValue();
-		//attrs.setNamedItem(data);
-		//attrs.setNamedItem(bound);
-		//attrs.setNamedItem(transform);
-		return node;
-	}
 
 	@Override public Rectangle getBounds() {
         return bound.getBounds();}

@@ -2,7 +2,6 @@ package app.drawing;
 
 import java.awt.*;
 import java.awt.geom.*;
-import org.w3c.dom.*;
 
 /**
 * This interface defines the commonly shared method
@@ -23,7 +22,7 @@ public interface Drawing extends Shape {
      *
      * @return the XML Node representing the drawing.
      */
-    public Node getXMLNode(Document doc);
+    //public Node getXMLNode(Document doc);
 
     /**
      * Transforms the drawing with the given affine

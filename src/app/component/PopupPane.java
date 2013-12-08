@@ -2,9 +2,12 @@ package app.component;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
+
+import app.util.UIToolbox;
 
 /**
  * The class implements a popup panel,

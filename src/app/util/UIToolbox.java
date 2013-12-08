@@ -1,8 +1,11 @@
 package app.util;
 
 import java.awt.*;
+
 import javax.swing.*;
+
 import app.component.*;
+import app.main.AppConfig;
 
 /**
  * This static class contains a collection of commonly
@@ -140,6 +143,28 @@ public class UIToolbox {
         comp.setMaximumSize(size);
         comp.setSize(size);
         return comp;
+    }
+
+    /**
+     * Draw the grid.
+     * 
+     * @param g2d		the graphics context
+     */
+    public static void drawGrid(Graphics2D g2d) {
+    	int w = AppConfig.size.width;
+    	int h = AppConfig.size.height;
+        g2d.setColor(Color.LIGHT_GRAY);
+        g2d.setStroke( new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[] {1.0f}, 0.0f) );
+        for (int i = 0; i < w; i++) {
+            if ((i % 10) == 0) {
+                g2d.drawLine(i, 0, i, h);
+            }
+        }
+        for (int j = 0; j < h; j++) {
+            if ((j % 10) == 0) {
+                g2d.drawLine(0, j, w, j);
+            }
+        }
     }
 
 } // UIToolbox
