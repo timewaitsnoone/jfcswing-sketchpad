@@ -1,6 +1,4 @@
-package app.model.drawing.shape;
-
-import app.model.drawing.*;
+package app.drawing;
 
 /** Triangle drawing. */
 public class TriangleDrawing extends ShapeDrawing {

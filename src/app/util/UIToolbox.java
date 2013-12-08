@@ -1,9 +1,7 @@
 package app.util;
 
 import java.awt.*;
-
 import javax.swing.*;
-
 import app.component.*;
 
 /**
@@ -99,7 +97,7 @@ public class UIToolbox {
      * Returns the popup menu that is an ancestor of the
      * given component. If the component is not a child of a popup,
      * return null.
-     * 
+     *
      * @param comp		the component to get the popup of
      * @return			the popup menu or null, if none found.
      */
@@ -111,6 +109,37 @@ public class UIToolbox {
 			comp = comp.getParent();
 		}
     	return null;
+    }
+
+    /**
+     * Add the panel to the outer panel and box.
+     * This fixes the size of the panel, so it does not
+     * expand when resized.
+     *
+     * @param outer     panel to be added to.
+     * @param inner     panel to add to the outer.
+     * @return          the outer panel
+     */
+    public static JPanel box(JPanel outer, Component inner) {
+        Box box = Box.createVerticalBox();
+        box.add(inner);
+        outer.add(box);
+        return outer;
+    }
+
+    /**
+     * Set the size of the given of the component.
+     *
+     * @param comp  component to set the size of
+     * @param size  width and height of the panel
+     * @return      the component that was given.
+     */
+    public static Component setSize(Component comp, Dimension size) {
+        comp.setPreferredSize(size);
+        comp.setMinimumSize(size);
+        comp.setMaximumSize(size);
+        comp.setSize(size);
+        return comp;
     }
 
 } // UIToolbox

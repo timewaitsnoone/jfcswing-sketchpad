@@ -1,4 +1,4 @@
-package app.model.drawing;
+package app.drawing;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -21,25 +21,24 @@ import org.w3c.dom.*;
  */
 public class ShapeDrawing implements Drawing {
 
-	protected Shape  shape;
-	protected Paint  fillPaint;
-	protected Stroke stroke;
-	protected Paint  strokePaint;
+	protected Shape shape;
+	protected Style	style;
 
 	public ShapeDrawing(Shape shape) {
 		this.setShape(shape);
 	}
 
-	public ShapeDrawing(Shape shape, Paint fillPaint, Paint strokePaint, Stroke stroke) {
+	public ShapeDrawing(Shape shape, Style style) {
 		this.setShape(shape);
-		this.setFill(fillPaint);
-		this.setStroke(strokePaint, stroke);
+		this.setStyle(style);
 	}
 
-	public Shape  getShape()       {return shape;}
-	public Paint  getFillPaint()   {return fillPaint;}
-	public Paint  getStrokePaint() {return strokePaint;}
-	public Stroke getStroke() 	   {return stroke;}
+	public ShapeDrawing(Shape shape, Color fill, Color line, Stroke stroke) {
+		this(shape, new Style(fill, line, stroke));
+	}
+
+	public Shape getShape() {return shape;}
+	public Style getStyle() {return style;}
 
 	/**
 	 * Set the internal shape object to that given.
@@ -53,40 +52,41 @@ public class ShapeDrawing implements Drawing {
 	}
 
 	/**
-	 * Set the fill paint to that given.
+	 * Set the style of the drawing.
 	 *
-	 * @param fillPaint 	the fill paint.
-	 * @return				this drawing object
+	 * @param style 	the style to apply.
+	 * @return			this drawing object
 	 */
-	public ShapeDrawing setFill(Paint fillPaint) {
-		this.fillPaint = fillPaint;
+	public ShapeDrawing setStyle(Style style) {
+		this.style = style;
 		return this;
 	}
 
 	/**
-	 * Set the stroke paint and type to that given.
+	 * Set the style of the drawing.
 	 *
-	 * @param strokePaint 	the stroke paint.
-	 * @param stroke 		the stroke type.
-	 * @return				this drawing object
+	 * @param style 	the style to apply.
+	 * @return			this drawing object
 	 */
-	public ShapeDrawing setStroke(Paint strokePaint, Stroke stroke) {
-		this.strokePaint = strokePaint;
-		this.stroke = stroke;
+	public ShapeDrawing setStyle(Color fill, Color line, Stroke stroke) {
+		this.style = new Style(fill, line, stroke);
 		return this;
 	}
 
 	@Override public void draw(Graphics2D g) {
+		if (style == null) {
+			return;
+		}
 		Graphics2D g2d = (Graphics2D)g.create();
-			if (fillPaint != null) {
-				g2d.setPaint(fillPaint);
+			if (style.getFillColor() != null) {
+				g2d.setColor(style.getFillColor());
 				g2d.fill(shape);
 			}
-			if (strokePaint != null) {
-				g2d.setPaint(strokePaint);
+			if (style.getLineColor() != null) {
+				g2d.setColor(style.getLineColor());
 			}
-			if (stroke != null) {
-				g2d.setStroke(stroke);
+			if (style.getStroke() != null) {
+				g2d.setStroke(style.getStroke());
 				g2d.draw(shape);
 			}
 		g2d.dispose();
@@ -182,5 +182,28 @@ public class ShapeDrawing implements Drawing {
 		return shape.getPathIterator(at);}
 	@Override public PathIterator getPathIterator(AffineTransform at, double flatness) {
 		return shape.getPathIterator(at, flatness);}
+
+	/**
+	 * This class stores the styling
+	 * properties of the shapes.
+	 */
+	public static class Style {
+		private Color fill;
+		private Color line;
+		private Stroke stroke;
+		public Style(Color fill, Color line, Stroke stroke) {
+			this.fill = fill;
+			this.line = line;
+			this.stroke = stroke;
+		}
+		// Getters
+		public Color  getFillColor() {return fill;}
+		public Color  getLineColor() {return line;}
+		public Stroke getStroke() {return stroke;}
+		// Setters
+		public void setFillColor(Color fill) {this.fill = fill;}
+		public void setLineColor(Color line) {this.line = line;}
+		public void setStroke(Stroke stroke) {this.stroke = stroke;}
+	} // Style
 
 } // ShapeDrawing

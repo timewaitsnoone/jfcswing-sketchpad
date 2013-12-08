@@ -51,10 +51,8 @@ public class SettingsPanel extends JPanel {
 		// Zoom Panel
 		JPanel zoomPanel = new JPanel();
 			AbstractButton zoomIn = (AbstractButton)buttons.get("ZOOM-IN");
-				//zoomIn.setContentAreaFilled(false);
 				zoomIn.setBorder(null);
 			AbstractButton zoomOut = (AbstractButton)buttons.get("ZOOM-OUT");
-				//zoomOut.setContentAreaFilled(false);
 				zoomOut.setBorder(null);
 			this.zoomSlider = new JSlider(JSlider.VERTICAL, 0, 6, 3);
 				final Map<Integer, Integer> zoomValues = new HashMap<Integer, Integer>();
@@ -92,7 +90,6 @@ public class SettingsPanel extends JPanel {
 				TitledBorder.TOP,
 				MyFont.REGULAR_FONT.deriveFont(10.f),
 				Color.LIGHT_GRAY));
-			//zoomPanel.setOpaque(false);
 		// Document Size Panel
         JPanel sizePanel = new JPanel();
         	JLabel widthLabel  = new JLabel("Width:");
@@ -150,13 +147,8 @@ public class SettingsPanel extends JPanel {
 				TitledBorder.TOP,
 				MyFont.REGULAR_FONT.deriveFont(10.f),
 				Color.LIGHT_GRAY));
-        	//sizePanel.setOpaque(false);
         // Put it all together
     	setLayout(new BorderLayout());
-        //JLabel title = new JLabel("Settings");
-        //	title.setFont(MyFont.REGULAR_FONT.deriveFont(18.f));
-        //	title.setHorizontalAlignment(SwingConstants.CENTER);
-        //add(title, BorderLayout.NORTH);
         JPanel outer = new JPanel();
 	        GroupLayout layout = new GroupLayout(outer);
 	    		outer.setLayout(layout);
@@ -167,8 +159,6 @@ public class SettingsPanel extends JPanel {
 	    		layout.setVerticalGroup(layout.createParallelGroup()
 	    			.addComponent(zoomPanel)
 	    			.addComponent(sizePanel));
-	    	//outer.setOpaque(false);
-	    //setOpaque(false);
     	add(outer, BorderLayout.CENTER);
 	}
 

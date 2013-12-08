@@ -1,6 +1,4 @@
-package app.model.drawing.shape;
-
-import app.model.drawing.*;
+package app.drawing;
 
 /** Right Triangle drawing. */
 public class RightTriangleDrawing extends ShapeDrawing {

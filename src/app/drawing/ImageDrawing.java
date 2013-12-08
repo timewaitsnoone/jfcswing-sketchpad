@@ -1,15 +1,11 @@
-package app.model.drawing;
+package app.drawing;
 
 import java.io.*;
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.image.*;
-
 import javax.imageio.*;
-
 import org.w3c.dom.*;
-
-import app.model.drawing.shape.*;
 
 /**
  * This class implements a image drawing.

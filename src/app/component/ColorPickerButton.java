@@ -27,7 +27,7 @@ public class ColorPickerButton extends JToggleButton {
 			this.icon = MyFont.ICONS.get(icon);
 		}
 		this.cp = new ColorPicker(initialColor);
-		UIToolbox.attachPopupPane(this, this.cp, null, PopupPane.BOTTOM_RIGHT, true);
+		UIToolbox.attachPopupPane(this, this.cp, null, PopupPane.BOTTOM_LEFT, true);
 		this.cp.getSelectionModel().addChangeListener(new ChangeListener() {
 			@Override public void stateChanged(ChangeEvent e) {
 				updateText();

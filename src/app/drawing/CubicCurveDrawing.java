@@ -1,15 +1,13 @@
-package app.model.drawing.shape;
+package app.drawing;
 
 import java.awt.geom.*;
-
-import app.model.drawing.*;
 
 /** Cubic Curve drawing. */
 public class CubicCurveDrawing extends ShapeDrawing {
 	/**
 	 * Constructs and initializes a CubicCurveDrawing
 	 * from the specified double coordinates.
-	 * 
+	 *
 	 * @param x1 		the X coordinate for the start point of the resulting CubicCurveDrawing
 	 * @param y1 		the Y coordinate for the start point of the resulting CubicCurveDrawing
 	 * @param ctrlx1 	the X coordinate for the first control point of the resulting CubicCurveDrawing

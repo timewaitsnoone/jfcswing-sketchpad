@@ -1,9 +1,7 @@
-package app.model.drawing.shape;
+package app.drawing;
 
 import java.awt.*;
 import java.awt.geom.*;
-
-import app.model.drawing.*;
 
 /** Path drawing. */
 public class PathDrawing extends ShapeDrawing {

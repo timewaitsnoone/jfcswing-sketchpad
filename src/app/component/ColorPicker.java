@@ -173,7 +173,9 @@ public class ColorPicker
 	        GBC.weightx   = 1.0;
 	        GBC.fill      = GridBagConstraints.HORIZONTAL;
 	        GBC.gridwidth = GridBagConstraints.REMAINDER;
-    	add(this.chooser, GBC);
+	    JPanel boxer = new JPanel();
+	    UIToolbox.setSize(boxer, new Dimension(275, 275));
+    	add(UIToolbox.box(boxer, this.chooser), GBC);
     }
 
     /**

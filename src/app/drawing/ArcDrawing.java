@@ -1,15 +1,13 @@
-package app.model.drawing.shape;
+package app.drawing;
 
 import java.awt.geom.*;
-
-import app.model.drawing.*;
 
 /** Arc drawing. */
 public class ArcDrawing extends ShapeDrawing {
 	/**
 	 * Constructs a new arc, initialized to the specified location,
 	 * size, angular extents, and closure type.
-	 * 
+	 *
 	 * @param x			The X coordinate of the upper-left corner of the arc's framing rectangle.
 	 * @param y			The Y coordinate of the upper-left corner of the arc's framing rectangle.
 	 * @param w			The overall width of the full ellipse of which this arc is a partial section.
