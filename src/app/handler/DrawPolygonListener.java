@@ -23,8 +23,8 @@ public class DrawPolygonListener extends MouseAdapter {
 	public void mousePressed(MouseEvent e) {
 		if (path == null) {
 			AppConfig.preview = null;
-			startx = e.getX();
-			starty = e.getY();
+			startx = e.getX()/AppConfig.zoom;
+			starty = e.getY()/AppConfig.zoom;
 			path = new PathDrawing();
 			path.moveTo(startx, starty);
 			shapeStyle = new ShapeDrawing.Style();
@@ -32,7 +32,7 @@ public class DrawPolygonListener extends MouseAdapter {
 				shapeStyle.setStroke(new BasicStroke(AppConfig.stroke));
 			path.setStyle(shapeStyle);
 		} else {
-			path.lineTo(e.getX(), e.getY());
+			path.lineTo(e.getX()/AppConfig.zoom, e.getY()/AppConfig.zoom);
 		}
 		AppConfig.preview = path;
 		comp.repaint();
@@ -42,7 +42,7 @@ public class DrawPolygonListener extends MouseAdapter {
 	public void mouseDragged(MouseEvent e) {
 		if (AppConfig.preview == null) {return;}
 		PathDrawing p2 = new PathDrawing(path);
-		p2.lineTo(e.getX(), e.getY());
+		p2.lineTo(e.getX()/AppConfig.zoom, e.getY()/AppConfig.zoom);
 		p2.setStyle(shapeStyle);
 		AppConfig.preview = p2;
 		comp.repaint();
@@ -52,7 +52,7 @@ public class DrawPolygonListener extends MouseAdapter {
 	public void mouseReleased(MouseEvent e) {
 		if (AppConfig.preview == null) {return;}
 		path = (PathDrawing) AppConfig.preview;
-		if (Math.abs(startx - e.getX()) < 5 && Math.abs(starty - e.getY()) < 5) {
+		if (Math.abs(startx - e.getX()*AppConfig.zoom) < 5 && Math.abs(starty - e.getY()*AppConfig.zoom) < 5) {
 			shapeStyle.setFillColor(AppConfig.fill);
 			path.closePath();
 			path.setStyle(shapeStyle);

@@ -1,12 +1,13 @@
 package app.component;
 
 import app.drawing.ShapeDrawing;
-import app.handler.Syscalls;
 import app.main.AppConfig;
 import app.util.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -46,19 +47,19 @@ public class MainToolbar extends JToolBar {
 			leftGroup.add(buttons.get("NEW"));
 				buttons.get("NEW").addActionListener(new ActionListener() {
 					@Override public void actionPerformed(ActionEvent e) {
-						Syscalls.newDrawing();
+						FileOperations.newDrawing();
 					}
 				});
 			leftGroup.add(buttons.get("OPEN"));
 				buttons.get("OPEN").addActionListener(new ActionListener() {
 					@Override public void actionPerformed(ActionEvent e) {
-						Syscalls.openDrawing();
+						FileOperations.openDrawing();
 					}
 				});
 			leftGroup.add(buttons.get("SAVE"));
 				buttons.get("SAVE").addActionListener(new ActionListener() {
 					@Override public void actionPerformed(ActionEvent e) {
-						Syscalls.saveDrawing(false, false);
+						FileOperations.saveDrawing(false, false);
 					}
 				});
 			leftGroup.addSeparator();

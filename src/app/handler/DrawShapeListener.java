@@ -25,8 +25,8 @@ public class DrawShapeListener extends MouseAdapter {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		AppConfig.preview = null;
-		startx = e.getX();
-		starty = e.getY();
+		startx = e.getX()/AppConfig.zoom;
+		starty = e.getY()/AppConfig.zoom;
 		switch (AppConfig.mode) {
 			case FREEHAND:
 				path = new PathDrawing();
@@ -55,8 +55,8 @@ public class DrawShapeListener extends MouseAdapter {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if (AppConfig.preview == null) {return;}		
-		double endx = e.getX();
-		double endy = e.getY();
+		double endx = e.getX()/AppConfig.zoom;
+		double endy = e.getY()/AppConfig.zoom;
 		double x = (startx > endx) ? endx : startx;
 		double y = (starty > endy) ? endy : starty;
 		double w = Math.abs(endx - startx);

@@ -152,8 +152,8 @@ public class UIToolbox {
      * @param g2d		the graphics context
      */
     public static void drawGrid(Graphics2D g2d) {
-    	int w = AppConfig.size.width;
-    	int h = AppConfig.size.height;
+    	int w = (int)(AppConfig.zoom*AppConfig.size.width);
+    	int h = (int)(AppConfig.zoom*AppConfig.size.height);
         g2d.setColor(Color.LIGHT_GRAY);
         g2d.setStroke( new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[] {1.0f}, 0.0f) );
         for (int i = 0; i < w; i++) {

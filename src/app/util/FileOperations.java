@@ -1,4 +1,4 @@
-package app.handler;
+package app.util;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -14,7 +14,7 @@ import app.drawing.Drawing;
 import app.drawing.ImageDrawing;
 import app.main.AppConfig;
 
-public class Syscalls {
+public class FileOperations {
 
 	public static int newDrawing() {
 		if (saveDrawing(true, false) == JOptionPane.CANCEL_OPTION) {
@@ -23,6 +23,8 @@ public class Syscalls {
 		AppConfig.file = null;
 		if (!AppConfig.drawings.isEmpty()) {
 			AppConfig.drawings.clear();
+			AppConfig.preview = null;
+			AppConfig.selected = null;
 			AppConfig.drawingArea.repaint();
 		}
 		return JOptionPane.YES_OPTION;
@@ -39,6 +41,8 @@ public class Syscalls {
 			AppConfig.file = imgChooser.getSelectedFileWithExtension();
 			String[] parts = AppConfig.file.getName().split("[.]");
 			AppConfig.ext = parts[parts.length - 1];
+			AppConfig.preview = null;
+			AppConfig.selected = null;
 			AppConfig.drawingArea.repaint();
 			return JOptionPane.YES_OPTION;
 		}

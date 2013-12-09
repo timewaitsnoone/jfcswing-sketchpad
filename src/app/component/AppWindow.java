@@ -9,8 +9,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
-import app.handler.Syscalls;
 import app.main.AppConfig;
+import app.util.FileOperations;
 
 public class AppWindow extends JFrame {
 
@@ -18,7 +18,7 @@ public class AppWindow extends JFrame {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			@Override public void windowClosing(WindowEvent e) {
-				int n = Syscalls.saveDrawing(true, false);
+				int n = FileOperations.saveDrawing(true, false);
 				if (n == JOptionPane.YES_OPTION || n == JOptionPane.NO_OPTION) {
 					System.exit(0);
 				}
@@ -47,9 +47,9 @@ public class AppWindow extends JFrame {
 				}
 				if (e.isControlDown()) {
 					switch (e.getKeyCode()) {
-						case KeyEvent.VK_N: Syscalls.newDrawing(); break;
-						case KeyEvent.VK_O: Syscalls.openDrawing(); break;
-						case KeyEvent.VK_S: Syscalls.saveDrawing(false, false); break;
+						case KeyEvent.VK_N: FileOperations.newDrawing(); break;
+						case KeyEvent.VK_O: FileOperations.openDrawing(); break;
+						case KeyEvent.VK_S: FileOperations.saveDrawing(false, false); break;
 					} // switch
 				}
 				return false;

@@ -66,6 +66,8 @@ public class DrawingSelectionPane extends JToolBar {
 						} else if ("POLYGON".equals(action)) {
 							AppConfig.mode = AppConfig.Mode.POLYGON;
 						}
+						AppConfig.selected = null;
+						AppConfig.drawingArea.repaint();
 					}
 				}
 			}); // addActionListener
