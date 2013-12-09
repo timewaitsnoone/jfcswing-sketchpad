@@ -6,6 +6,7 @@ import app.main.AppConfig;
 import app.util.UIToolbox;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.*;
 
@@ -18,10 +19,21 @@ public class DrawingArea extends JPanel {
 		addMouseMotionListener(dl);
 	}
 
+	public void zoom() {
+		int width  = (int)(AppConfig.zoom*AppConfig.size.width);
+		int height = (int)(AppConfig.zoom*AppConfig.size.height);
+		setPreferredSize(new Dimension(width, height));
+		getParent().setPreferredSize(new Dimension(width + 50, height + 50));
+		revalidate();
+		repaint();
+	}
+
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+		((Graphics2D)g).scale(AppConfig.zoom, AppConfig.zoom);
 		paintBacking(g);
 		paintDrawing(g);
+		paintGrid(g);
 		paintPreview(g);
 		paintSelection(g);
 	}
@@ -30,7 +42,6 @@ public class DrawingArea extends JPanel {
 		Graphics2D g2d = (Graphics2D)g.create();
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			if (AppConfig.isOpaque) {setBackground(Color.WHITE);}
-			if (AppConfig.isGrid) {UIToolbox.drawGrid(g2d);}
 		g2d.dispose();
 	}
 
@@ -43,11 +54,20 @@ public class DrawingArea extends JPanel {
 		g2d.dispose();
 	}
 
+	private void paintGrid(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g.create();
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			if (AppConfig.isGrid) {UIToolbox.drawGrid(g2d);}
+		g2d.dispose();
+	}	
+
 	private void paintPreview(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g.create();
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			if (AppConfig.preview != null) {
 				AppConfig.preview.draw(g2d);
+				//g2d.setColor(Color.red);
+				//g2d.draw(AppConfig.preview.getBounds2D());
 			}
 		g2d.dispose();
 	}
@@ -55,9 +75,11 @@ public class DrawingArea extends JPanel {
 	private void paintSelection(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g.create();
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-			for (Drawing d : AppConfig.selected) {
-				g2d.setColor(Color.red);
-				g2d.draw(d.getBounds2D());
+			if (AppConfig.selected != null) {
+				Rectangle2D bound = AppConfig.selected.getBounds2D();
+				bound = new Rectangle2D.Double(bound.getX() - 5, bound.getY() - 5, bound.getWidth() + 10, bound.getHeight() + 10);
+				g2d.setColor(Color.RED);
+				g2d.draw(bound);				
 			}
 		g2d.dispose();
 	}

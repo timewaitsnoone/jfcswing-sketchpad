@@ -14,11 +14,13 @@ public class DrawingListener extends MouseAdapter {
 	private DrawShapeListener dsl;
 	private SelectionListener sel;
 	private DrawPolygonListener dpl;
+	private ImageListener imgl;
 	
 	public DrawingListener(Component comp) {
 		this.dsl = new DrawShapeListener(comp);
 		this.sel = new SelectionListener(comp);
 		this.dpl = new DrawPolygonListener(comp);
+		this.imgl = new ImageListener(comp);
 	}
 	
 	@Override
@@ -37,6 +39,7 @@ public class DrawingListener extends MouseAdapter {
 			case ROTATE:
 				break;
 			case IMAGE:
+				imgl.mouseClicked(e);
 				break;
 			case SELECT:
 				sel.mouseClicked(e);
@@ -64,6 +67,7 @@ public class DrawingListener extends MouseAdapter {
 			case ROTATE:
 				break;
 			case IMAGE:
+				imgl.mousePressed(e);
 				break;
 			case SELECT:
 				sel.mousePressed(e);
@@ -91,6 +95,7 @@ public class DrawingListener extends MouseAdapter {
 			case ROTATE:
 				break;
 			case IMAGE:
+				imgl.mouseDragged(e);
 				break;
 			case SELECT:
 				sel.mouseDragged(e);
@@ -118,6 +123,7 @@ public class DrawingListener extends MouseAdapter {
 			case ROTATE:
 				break;
 			case IMAGE:
+				imgl.mouseReleased(e);
 				break;
 			case SELECT:
 				sel.mouseReleased(e);

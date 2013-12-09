@@ -64,7 +64,7 @@ public class ImageDrawing implements Drawing {
 	}
 
 	@Override public void draw(Graphics2D g) {
-        // TODO
+		g.drawImage(image, transform, null);
     }
 
 	@Override public Rectangle getBounds() {

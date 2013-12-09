@@ -1,6 +1,7 @@
 package app.util;
 
 import java.awt.*;
+
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
@@ -40,6 +41,8 @@ public class UITheme {
 		    UIManager.put("TabbedPane.foreground", Color.BLACK);
 		    UIManager.put("ToolBar.opaque", false);
 		    UIManager.put("ToolBarSeparator.textForeground", new Color(110, 110, 110));
+		    UIManager.put("ToolTip.background", Color.DARK_GRAY);
+		    UIManager.put("ToolTip.foreground", Color.BLACK);
 
 		} catch (Exception e) {}
 	}

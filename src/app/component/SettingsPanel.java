@@ -1,11 +1,15 @@
 package app.component;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.GroupLayout.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
+
+import app.main.AppConfig;
 import app.util.*;
 
 /**
@@ -18,9 +22,9 @@ public class SettingsPanel extends JPanel {
 	private Map<String, AbstractButton> buttons = new HashMap<String, AbstractButton>();
 
 	private void configButtons() {
-		buttons.put("ZOOM-IN",  UIToolbox.createButton(UIToolbox.BUTTON,       "ZOOM-IN",  "ZOOM-IN",  12.0f, 0));
-		buttons.put("ZOOM-OUT", UIToolbox.createButton(UIToolbox.BUTTON,       "ZOOM-OUT", "ZOOM-OUT", 12.0f, 0));
-		buttons.put("LINKED", 	UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "LINKED",   "LINK",     12.0f, 0));
+		buttons.put("ZOOM-IN",  UIToolbox.createButton(UIToolbox.BUTTON,       "ZOOM-IN",  "ZOOM-IN",  "Zoom In", 12.0f, 0));
+		buttons.put("ZOOM-OUT", UIToolbox.createButton(UIToolbox.BUTTON,       "ZOOM-OUT", "ZOOM-OUT", "Zoom Out", 12.0f, 0));
+		buttons.put("LINKED", 	UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "LINKED",   "LINK",     "", 12.0f, 0));
 	}
 
 	/**
@@ -51,10 +55,13 @@ public class SettingsPanel extends JPanel {
 		// Zoom Panel
 		JPanel zoomPanel = new JPanel();
 			AbstractButton zoomIn = (AbstractButton)buttons.get("ZOOM-IN");
+				AppConfig.zoomIn = zoomIn;
 				zoomIn.setBorder(null);
 			AbstractButton zoomOut = (AbstractButton)buttons.get("ZOOM-OUT");
+				AppConfig.zoomOut = zoomOut;	
 				zoomOut.setBorder(null);
 			this.zoomSlider = new JSlider(JSlider.VERTICAL, 0, 6, 3);
+				AppConfig.zoomSlider = zoomSlider;
 				final Map<Integer, Integer> zoomValues = new HashMap<Integer, Integer>();
 					zoomValues.put(0, 25);
 					zoomValues.put(1, 50);
@@ -70,9 +77,25 @@ public class SettingsPanel extends JPanel {
 				zoomSlider.addChangeListener(new ChangeListener() {
 					@Override public void stateChanged(ChangeEvent arg0) {
 						showLabel(zoomSlider, zoomValues);
+						AppConfig.zoom = (double)zoomValues.get(zoomSlider.getValue())/100;
+						AppConfig.drawingArea.zoom();
 					}
 				});
 				showLabel(zoomSlider, zoomValues);
+				zoomIn.addActionListener(new ActionListener() {
+					@Override public void actionPerformed(ActionEvent e) {
+						if (zoomSlider.getValue() < zoomSlider.getMaximum()) {
+							zoomSlider.setValue(zoomSlider.getValue() + 1);
+						}
+					}
+				});
+				zoomOut.addActionListener(new ActionListener() {
+					@Override public void actionPerformed(ActionEvent e) {
+						if (zoomSlider.getValue() > zoomSlider.getMinimum()) {
+							zoomSlider.setValue(zoomSlider.getValue() - 1);
+						}
+					}
+				});
 			GroupLayout zoomLayout = new GroupLayout(zoomPanel);
 				zoomLayout.setAutoCreateGaps(true);
 				zoomLayout.setAutoCreateContainerGaps(true);
@@ -96,9 +119,9 @@ public class SettingsPanel extends JPanel {
         		widthLabel.setHorizontalAlignment(SwingConstants.RIGHT);
             JLabel heightLabel = new JLabel("Height:");
             	heightLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-            this.widthTextField  = new JTextField();
+            this.widthTextField  = new JTextField(5);
         		widthTextField.setHorizontalAlignment(JTextField.RIGHT);
-        	this.heightTextField = new JTextField();
+        	this.heightTextField = new JTextField(5);
         		heightTextField.setHorizontalAlignment(JTextField.RIGHT);
         	JLabel widthUnits  = new JLabel("px");
             JLabel heightUnits = new JLabel("px");
@@ -155,11 +178,21 @@ public class SettingsPanel extends JPanel {
 	    		layout.setAutoCreateContainerGaps(true);
 	    		layout.setHorizontalGroup(layout.createSequentialGroup()
 	    			.addComponent(zoomPanel)
-	    			.addComponent(sizePanel));
+	    			/*.addComponent(sizePanel)*/);
 	    		layout.setVerticalGroup(layout.createParallelGroup()
 	    			.addComponent(zoomPanel)
-	    			.addComponent(sizePanel));
+	    			/*.addComponent(sizePanel)*/);
     	add(outer, BorderLayout.CENTER);
+    	
+    	this.widthTextField.setText("" + AppConfig.size.width);
+    	this.heightTextField.setText("" + AppConfig.size.height);
+    	this.linked.setSelected(true);
+    	this.saveSizeButton.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+    	
 	}
 
 } // SettingsPanel

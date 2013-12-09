@@ -19,15 +19,15 @@ public class DrawingSelectionPane extends JToolBar {
 	private final ButtonGroup BGROUP;
 
 	private void configButtons() {
-		BUTTONS.put("LINE",     UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "LINE",     "LINE"));
-		BUTTONS.put("FREEHAND", UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "FREEHAND", "FREEHAND"));
-		BUTTONS.put("CURVE",    UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "CURVE",    "CURVE"));
-		BUTTONS.put("RECT",     UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "RECT",     "RECTANGLE"));
-		BUTTONS.put("RRECT",    UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "RRECT",    "ROUNDRECT"));
-        BUTTONS.put("OVAL",     UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "OVAL",     "OVAL"));
-        BUTTONS.put("POLYGON",  UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "POLYGON",  "POLYGON"));
-        BUTTONS.put("TEXT",     UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "TEXT",     "TEXT"));
-        BUTTONS.put("IMAGE",    UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "IMAGE",    "IMAGE"));
+		BUTTONS.put("LINE",     UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "LINE",     "LINE"      , "Draw Line"));
+		BUTTONS.put("FREEHAND", UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "FREEHAND", "FREEHAND"  , "Draw Free Hand"));
+		BUTTONS.put("CURVE",    UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "CURVE",    "CURVE"     , "Draw Curves"));
+		BUTTONS.put("RECT",     UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "RECT",     "RECTANGLE" , "Draw Rectangle"));
+		BUTTONS.put("RRECT",    UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "RRECT",    "ROUNDRECT" , "Draw Round Rectangle"));
+        BUTTONS.put("OVAL",     UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "OVAL",     "OVAL"      , "Draw Oval"));
+        BUTTONS.put("POLYGON",  UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "POLYGON",  "POLYGON"   , "Draw Polygon"));
+        BUTTONS.put("TEXT",     UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "TEXT",     "TEXT"      , "Draw Text"));
+        BUTTONS.put("IMAGE",    UIToolbox.createButton(UIToolbox.TOGGLEBUTTON, "IMAGE",    "IMAGE"     , "Draw Image"));
 	}
 
 	public DrawingSelectionPane(final AbstractButton invoker) {
@@ -43,7 +43,7 @@ public class DrawingSelectionPane extends JToolBar {
 			BGROUP.add((AbstractButton)add(BUTTONS.get("RRECT")));
 			BGROUP.add((AbstractButton)add(BUTTONS.get("OVAL")));
 			BGROUP.add((AbstractButton)add(BUTTONS.get("POLYGON")));
-			BGROUP.add((AbstractButton)add(BUTTONS.get("TEXT")));
+			//BGROUP.add((AbstractButton)add(BUTTONS.get("TEXT")));
 			BGROUP.add((AbstractButton)add(BUTTONS.get("IMAGE")));
 		setPreferredSize(new Dimension(350, 35));
 		for (final AbstractButton button : BUTTONS.values()) {
@@ -70,6 +70,19 @@ public class DrawingSelectionPane extends JToolBar {
 				}
 			}); // addActionListener
 		} // foreach button
+		BUTTONS.get("IMAGE").addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				if (!BUTTONS.get("IMAGE").isSelected()) {return;}
+				AppConfig.mode = AppConfig.Mode.IMAGE;
+				ImageFileChooser imgChooser = new ImageFileChooser();
+				getParent().setVisible(false);
+				int returnVal = imgChooser.showOpenDialog((Component) e.getSource());
+				if (returnVal == ImageFileChooser.APPROVE_OPTION) {
+					AppConfig.preview = null;
+					AppConfig.imagePath = imgChooser.getSelectedFileWithExtension();
+				}
+			}
+		}); // addActionListener
 		if (invoker != null) {
 			invoker.addActionListener(new ActionListener() {
 				@Override public void actionPerformed(ActionEvent e) {

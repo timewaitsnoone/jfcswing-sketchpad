@@ -53,7 +53,7 @@ public class UIToolbox {
      * @param	padding		the amount of padding around the button
      * @return              the button created.
      */
-    public static AbstractButton createButton(int type, String id, String icon, float size, int padding) {
+    public static AbstractButton createButton(int type, String id, String icon, String tooltip, float size, int padding) {
         AbstractButton ab = null;
         switch (type) {
             case BUTTON:       ab = new JButton();       break;
@@ -65,11 +65,12 @@ public class UIToolbox {
         ab.setText(MyFont.ICONS.get(icon));
         ab.setMargin(new Insets(padding, padding, padding, padding));
         ab.setActionCommand(id);
+        ab.setToolTipText(tooltip);
         ab.setName(id);
         return ab;
     }
-    public static AbstractButton createButton(int type, String id, String icon) {
-        return createButton(type, id, icon, 16.f, 5);
+    public static AbstractButton createButton(int type, String id, String icon, String tooltip) {
+        return createButton(type, id, icon, tooltip, 16.f, 5);
     }
 
     // ---- Popup Pane -----

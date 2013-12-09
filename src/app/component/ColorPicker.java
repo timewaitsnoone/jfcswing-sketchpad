@@ -1,9 +1,8 @@
 package app.component;
 
 import app.util.*;
-
 import java.awt.*;
-
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.colorchooser.*;
 import javax.swing.event.*;
@@ -18,11 +17,14 @@ import javax.swing.event.*;
  * and modify the ColorChooserPanel directly to suit our needs.
  */
 public class ColorPicker
-	extends JPanel {
+	extends JPanel
+	implements ActionListener {
 
 	protected final GridBagConstraints GBC = new GridBagConstraints();
     protected JColorChooser chooser;
     protected ColorSelectionModel csmodel;
+    protected JToggleButton noColor;
+    protected JPanel boxer;
 
     private AbstractColorChooserPanel[] panels = {
     	new AbstractColorChooserPanel() {
@@ -164,7 +166,7 @@ public class ColorPicker
      * @param color     the initial value
      */
     public ColorPicker(Color color) {
-    	chooser = new JColorChooser(color);
+    	chooser = new JColorChooser(color == null ? Color.white : color);
     	csmodel = chooser.getSelectionModel();
     	chooser.setChooserPanels(panels);
     	chooser.setPreviewPanel(new JPanel());
@@ -173,9 +175,17 @@ public class ColorPicker
 	        GBC.weightx   = 1.0;
 	        GBC.fill      = GridBagConstraints.HORIZONTAL;
 	        GBC.gridwidth = GridBagConstraints.REMAINDER;
-	    JPanel boxer = new JPanel();
-	    UIToolbox.setSize(boxer, new Dimension(275, 275));
-    	add(UIToolbox.box(boxer, this.chooser), GBC);
+	    boxer = new JPanel();
+	    noColor = new JToggleButton("No Color");
+		    noColor.addActionListener(this);
+		    noColor.setMargin(new Insets(5, 5, 5, 5));
+		    noColor.setSelected(color == null);
+		    noColor.doClick();
+		    noColor.doClick();
+		UIToolbox.setSize(noColor, new Dimension(275, 30));
+	    UIToolbox.setSize(chooser, new Dimension(275, 275));
+	    add(noColor, GBC);
+    	add(UIToolbox.box(boxer, chooser), GBC);
     }
 
     /**
@@ -185,7 +195,17 @@ public class ColorPicker
      * @return the current color value of the color chooser
      */
     public Color getColor() {
+    	if (this.noColor.isSelected()) {
+    		return null;
+    	}
 		return this.chooser.getColor();
+	}
+
+    @Override public void actionPerformed(ActionEvent e) {
+    	setEnabled(!noColor.isSelected());
+		chooser.setVisible(isEnabled());
+		if (getParent() == null) {return;}
+    	getParent().revalidate();
 	}
 
     /**
