@@ -64,24 +64,23 @@ public class SelectionListener extends MouseAdapter {
 	public void mouseDragged(MouseEvent e) {
 		double endx = e.getX()/AppConfig.zoom;
 		double endy = e.getY()/AppConfig.zoom;
-		if (AppConfig.selected != null && AppConfig.preview != null && 
-				AppConfig.preview.getBounds2D().contains(endx, endy)) {
+		if (AppConfig.selected != null && AppConfig.preview != null) {
 			if (AppConfig.selected instanceof ShapeDrawing) {
 				ShapeDrawing shape = (ShapeDrawing)AppConfig.selected;
 				PathDrawing path = new PathDrawing(shape.getShape());
 				Color fill = shape.getStyle().getFillColor();
 				if (fill != null) {
-					fill = new Color(AppConfig.fill.getRed(),
-									   AppConfig.fill.getGreen(),
-									   AppConfig.fill.getBlue(),
-									   (int)(0.5*AppConfig.fill.getAlpha()));
+					fill = new Color(fill.getRed(),
+									   fill.getGreen(),
+									   fill.getBlue(),
+									   (int)(0.5*fill.getAlpha()));
 				}
 				Color line = shape.getStyle().getLineColor();
 				if (line != null) {
-					line = new Color(AppConfig.line.getRed(),
-									   AppConfig.line.getGreen(),
-									   AppConfig.line.getBlue(),
-									   (int)(0.5*AppConfig.line.getAlpha()));
+					line = new Color(line.getRed(),
+									   line.getGreen(),
+									   line.getBlue(),
+									   (int)(0.5*line.getAlpha()));
 				}
 				path.setStyle(fill, line, shape.getStyle().getStroke());
 				path.translate(endx - startx, endy - starty);
