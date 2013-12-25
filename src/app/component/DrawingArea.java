@@ -65,9 +65,10 @@ public class DrawingArea extends JPanel {
 		Graphics2D g2d = (Graphics2D)g.create();
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			if (AppConfig.preview != null) {
+				g2d.setComposite(AlphaComposite.SrcOver.derive(0.5f));
 				AppConfig.preview.draw(g2d);
-				//g2d.setColor(Color.red);
-				//g2d.draw(AppConfig.preview.getBounds2D());
+				g2d.setColor(Color.red);
+				g2d.draw(AppConfig.preview.getBounds2D());
 			}
 		g2d.dispose();
 	}

@@ -128,7 +128,7 @@ public class MainToolbar extends JToolBar {
 				AppConfig.fill = fillColorPicker.getColor();
 				if (AppConfig.selected != null && AppConfig.selected instanceof ShapeDrawing) {
 					ShapeDrawing shape = (ShapeDrawing)AppConfig.selected;
-					shape.setStyle(AppConfig.fill, AppConfig.line, new BasicStroke(AppConfig.stroke));
+					shape.setStyle(AppConfig.fill, shape.getStyle().getLineColor(), new BasicStroke(AppConfig.stroke));
 					AppConfig.drawingArea.repaint();
 				}
 			}
@@ -139,7 +139,7 @@ public class MainToolbar extends JToolBar {
 				AppConfig.line = lineColorPicker.getColor();
 				if (AppConfig.selected != null && AppConfig.selected instanceof ShapeDrawing) {
 					ShapeDrawing shape = (ShapeDrawing)AppConfig.selected;
-					shape.setStyle(AppConfig.fill, AppConfig.line, new BasicStroke(AppConfig.stroke));
+					shape.setStyle(shape.getStyle().getFillColor(), AppConfig.line, new BasicStroke(AppConfig.stroke));
 					AppConfig.drawingArea.repaint();
 				}
 			}

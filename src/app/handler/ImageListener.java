@@ -21,15 +21,15 @@ public class ImageListener extends MouseAdapter {
 		AppConfig.preview = image;
 		comp.repaint();
 	}
-	
+
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		double endx = e.getX();
 		double endy = e.getY();
-		double w = endx - startx;
-		double h = endy - starty;
+		double w = endx - startx; if (w == 0) {w = 0.1f;}
+		double h = endy - starty; if (h == 0) {h = 0.1f;}
 		Rectangle2D bound = AppConfig.preview.getBounds2D();
-		AppConfig.preview.scaleOnCenter(w/bound.getWidth(), h/bound.getHeight());
+		AppConfig.preview.scale(w/bound.getWidth(), h/bound.getHeight());
 		comp.repaint();
 	}
 

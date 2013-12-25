@@ -11,11 +11,10 @@ public class ImageFileChooser extends JFileChooser {
 		configExtensions();
 	}
 	private void configExtensions() {
-		this.addChoosableFileFilter(new FileNameExtensionFilter("*.jpg", "JPEG"));
-		this.addChoosableFileFilter(new FileNameExtensionFilter("*.png", "PNG"));
-		this.addChoosableFileFilter(new FileNameExtensionFilter("*.bmp", "Bitmap"));
-		this.addChoosableFileFilter(new FileNameExtensionFilter("*.tif", "TIFF"));
-		this.addChoosableFileFilter(new FileNameExtensionFilter("*.ico", "ICO"));
+		this.addChoosableFileFilter(new FileNameExtensionFilter("JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)", "jpg", "jpeg", "jpe", "jfif"));
+		this.addChoosableFileFilter(new FileNameExtensionFilter("PNG (*.png)", "png"));
+		this.addChoosableFileFilter(new FileNameExtensionFilter("Bitmap (*.bmp;*.dib)", "bmp", "dib"));
+		this.addChoosableFileFilter(new FileNameExtensionFilter("GIF (*.gif)", "gif"));
 	}
 
 	/**

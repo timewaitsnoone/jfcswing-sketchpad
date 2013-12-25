@@ -1,13 +1,12 @@
 package app.handler;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 
 import app.drawing.Drawing;
-import app.drawing.PathDrawing;
+import app.drawing.ImageDrawing;
 import app.drawing.ShapeDrawing;
 import app.main.AppConfig;
 
@@ -53,8 +52,9 @@ public class SelectionListener extends MouseAdapter {
 			startx = ptx;
 			starty = pty;
 			if (AppConfig.selected instanceof ShapeDrawing) {
-				ShapeDrawing shape = (ShapeDrawing)AppConfig.selected;
-				AppConfig.preview = new PathDrawing(shape.getShape());
+				AppConfig.preview = new ShapeDrawing((ShapeDrawing)AppConfig.selected);
+			} else if (AppConfig.selected instanceof ImageDrawing) {
+				AppConfig.preview = new ImageDrawing((ImageDrawing)AppConfig.selected);
 			}
 		}
 		comp.repaint();
@@ -65,27 +65,14 @@ public class SelectionListener extends MouseAdapter {
 		double endx = e.getX()/AppConfig.zoom;
 		double endy = e.getY()/AppConfig.zoom;
 		if (AppConfig.selected != null && AppConfig.preview != null) {
+			Drawing drawing = null;
 			if (AppConfig.selected instanceof ShapeDrawing) {
-				ShapeDrawing shape = (ShapeDrawing)AppConfig.selected;
-				PathDrawing path = new PathDrawing(shape.getShape());
-				Color fill = shape.getStyle().getFillColor();
-				if (fill != null) {
-					fill = new Color(fill.getRed(),
-									   fill.getGreen(),
-									   fill.getBlue(),
-									   (int)(0.5*fill.getAlpha()));
-				}
-				Color line = shape.getStyle().getLineColor();
-				if (line != null) {
-					line = new Color(line.getRed(),
-									   line.getGreen(),
-									   line.getBlue(),
-									   (int)(0.5*line.getAlpha()));
-				}
-				path.setStyle(fill, line, shape.getStyle().getStroke());
-				path.translate(endx - startx, endy - starty);
-				AppConfig.preview = path;
+				drawing = new ShapeDrawing((ShapeDrawing)AppConfig.selected);
+			} else if (AppConfig.selected instanceof ImageDrawing) {
+				drawing = new ImageDrawing((ImageDrawing)AppConfig.selected);
 			}
+			drawing.translate(endx - startx, endy - starty);
+			AppConfig.preview = drawing;
 		}
 		comp.repaint();
 	}

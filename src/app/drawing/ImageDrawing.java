@@ -30,8 +30,8 @@ public class ImageDrawing implements Drawing {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		bound = new RectangleDrawing(x, y, image.getWidth(), image.getHeight());
-		transform.translate(x, y);
+		bound = new RectangleDrawing(0, 0, image.getWidth(), image.getHeight());
+		this.translate(x, y);
 	}
 
 	/**
@@ -52,6 +52,24 @@ public class ImageDrawing implements Drawing {
 		this.transform = at;
 	}
 
+	public ImageDrawing(ImageDrawing img) {
+		this.image = img.getImage();
+		this.transform = new AffineTransform(img.getTransform());
+		this.bound = new PathDrawing(img.getShapeBound());
+	}
+	
+	public BufferedImage getImage() {
+		return image;
+	}
+	
+	public AffineTransform getTransform() {
+		return transform;
+	}
+	
+	public ShapeDrawing getShapeBound() {
+		return bound;
+	}
+
 	/**
 	 * Update the transformation matrix.
 	 *
@@ -64,7 +82,10 @@ public class ImageDrawing implements Drawing {
 	}
 
 	@Override public void draw(Graphics2D g) {
-		g.drawImage(image, transform, null);
+		Graphics2D g2d = (Graphics2D)g.create();
+		g2d.transform(transform);
+		g2d.drawImage(image, null, null);
+		g2d.dispose();
     }
 
 	@Override public Rectangle getBounds() {

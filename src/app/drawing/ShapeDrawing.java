@@ -31,6 +31,11 @@ public class ShapeDrawing implements Drawing {
 		this.setStyle(style);
 	}
 
+	public ShapeDrawing(ShapeDrawing shape) {
+		this.shape = new PathDrawing(shape.getShape());
+		this.setStyle(shape.getStyle());
+	}
+	
 	public ShapeDrawing(Shape shape, Color fill, Color line, Stroke stroke) {
 		this(shape, new Style(fill, line, stroke));
 	}
@@ -56,7 +61,7 @@ public class ShapeDrawing implements Drawing {
 	 * @return			this drawing object
 	 */
 	public ShapeDrawing setStyle(Style style) {
-		this.style = style;
+		this.style = new Style(style.fill, style.line, style.stroke);
 		return this;
 	}
 
