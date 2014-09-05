@@ -4,7 +4,7 @@ import java.awt.geom.*;
 
 /** Round Rectangle drawing. */
 public class RoundRectangleDrawing extends ShapeDrawing {
-	/**
+    /**
      * Constructs and initializes a RoundRectangleDrawing from the
      * specified coordinates.
      *
@@ -23,7 +23,7 @@ public class RoundRectangleDrawing extends ShapeDrawing {
      *              corners of the newly constructed
      *              RoundRectangleDrawing
      */
-	public RoundRectangleDrawing(double x, double y, double w, double h, double arcw, double arch) {
-		super(new RoundRectangle2D.Double(x, y, w, h, arcw, arch));
-	}
+    public RoundRectangleDrawing(double x, double y, double w, double h, double arcw, double arch) {
+        super(new RoundRectangle2D.Double(x, y, w, h, arcw, arch));
+    }
 } // RoundRectangleDrawing

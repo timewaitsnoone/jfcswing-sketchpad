@@ -16,12 +16,12 @@ import app.util.*;
  */
 public class AccordionPanel extends JPanel {
 
-	protected final Map<AccordionButton, Component> PANELS = new HashMap<AccordionButton, Component>();
-	protected final GridBagConstraints GBC = new GridBagConstraints();
-	protected final Set<Component> showingPanel = new HashSet<Component>();
+    protected final Map<AccordionButton, Component> PANELS = new HashMap<AccordionButton, Component>();
+    protected final GridBagConstraints GBC = new GridBagConstraints();
+    protected final Set<Component> showingPanel = new HashSet<Component>();
 
-	protected ButtonGroup buttonGroup;
-	protected int panelWidth = 0;
+    protected ButtonGroup buttonGroup;
+    protected int panelWidth = 0;
 
     /**
      * Constructs a new Accordion Panel.
@@ -31,20 +31,20 @@ public class AccordionPanel extends JPanel {
      * @param group     true if grouped, else false
      */
     public AccordionPanel(boolean group) {
-    	buttonGroup = group ? new ButtonGroup() : null;
-    	setLayout(new GridBagLayout());
-	    	GBC.insets    = new Insets(1, 3, 0, 3);
-	    	GBC.weightx   = 1.0;
-	    	GBC.fill      = GridBagConstraints.HORIZONTAL;
-	    	GBC.gridwidth = GridBagConstraints.REMAINDER;
-	    super.addImpl(new JPanel(), GBC, 0); // padding
+        buttonGroup = group ? new ButtonGroup() : null;
+        setLayout(new GridBagLayout());
+            GBC.insets    = new Insets(1, 3, 0, 3);
+            GBC.weightx   = 1.0;
+            GBC.fill      = GridBagConstraints.HORIZONTAL;
+            GBC.gridwidth = GridBagConstraints.REMAINDER;
+        super.addImpl(new JPanel(), GBC, 0); // padding
     }
 
     /**
      * Constructs a new ungrouped Accordion Panel.
      */
     public AccordionPanel() {
-    	this(false);
+        this(false);
     }
 
     /**
@@ -54,7 +54,7 @@ public class AccordionPanel extends JPanel {
      * @param show      flag to move visible (true) or hide (false).
      */
     private void togglePanelVisibility(AccordionButton button, boolean show) {
-    	Component panel = PANELS.get(button);
+        Component panel = PANELS.get(button);
         if (panel.isShowing() == show) {return;}
         if (show) {
             showingPanel.add(panel);
@@ -70,32 +70,32 @@ public class AccordionPanel extends JPanel {
      * {@inheritDoc}
      */
     @Override protected void addImpl(Component panel, Object constraint, int idx) {
-    	if (idx < 0) {
+        if (idx < 0) {
             idx = PANELS.size();
         }
         String label = constraint == null ? "Panel " + (idx + 1) :
                             constraint.toString();
-    	AccordionButton ab = new AccordionButton(label);
-    	PANELS.put(ab, panel);
+        AccordionButton ab = new AccordionButton(label);
+        PANELS.put(ab, panel);
         // add containment hierarchy
         super.addImpl(ab, GBC, idx * 2);
-    	super.addImpl(panel, GBC, idx * 2 + 1);
+        super.addImpl(panel, GBC, idx * 2 + 1);
         // add to button group
         if (buttonGroup != null) {
             buttonGroup.add(ab);
         }
         // update width
         int width = panel.getPreferredSize().width;
-    	if (width > panelWidth) {
-    		panelWidth = width;
-    		for (AccordionButton button : PANELS.keySet()) {
-    			button.setPreferredSize(new Dimension(width,
-    					button.getPreferredSize().height));
-    		}
-    	}
-    	if (panel instanceof JPanel) {
-    		((JPanel)panel).setBorder(new EtchedBorder());
-    	}
+        if (width > panelWidth) {
+            panelWidth = width;
+            for (AccordionButton button : PANELS.keySet()) {
+                button.setPreferredSize(new Dimension(width,
+                        button.getPreferredSize().height));
+            }
+        }
+        if (panel instanceof JPanel) {
+            ((JPanel)panel).setBorder(new EtchedBorder());
+        }
         panel.setVisible(false); // init closed
     }
 
@@ -107,7 +107,7 @@ public class AccordionPanel extends JPanel {
      *                  else null if not found
      */
     public Component getComponent(Object key) {
-		return PANELS.get(key);
+        return PANELS.get(key);
     }
 
     /**
@@ -116,7 +116,7 @@ public class AccordionPanel extends JPanel {
      * @return the number of panels in the accordion.
      */
     public int getPanelCount() {
-		return PANELS.size();
+        return PANELS.size();
     }
 
     /**
@@ -125,7 +125,7 @@ public class AccordionPanel extends JPanel {
      * @return a set of the currently visible panels.
      */
     public Set<Component> getVisiblePanels() {
-		return showingPanel;
+        return showingPanel;
     }
 
     /**
@@ -136,18 +136,18 @@ public class AccordionPanel extends JPanel {
      * @param group     true if grouped, else false
      */
     public void setButtonGroup(boolean group) {
-    	if (group == (buttonGroup != null)) {return;}
-    	if (group) {
-    		buttonGroup = new ButtonGroup();
-    		for (AccordionButton ab : PANELS.keySet()) {
+        if (group == (buttonGroup != null)) {return;}
+        if (group) {
+            buttonGroup = new ButtonGroup();
+            for (AccordionButton ab : PANELS.keySet()) {
                 buttonGroup.add(ab);
             }
-    	} else {
-    		for (AccordionButton ab : PANELS.keySet()) {
+        } else {
+            for (AccordionButton ab : PANELS.keySet()) {
                 buttonGroup.remove(ab);
             }
-    		buttonGroup = null;
-    	}
+            buttonGroup = null;
+        }
     }
 
     /**
@@ -156,24 +156,24 @@ public class AccordionPanel extends JPanel {
      * @param listener      the EventListener to attach.
      */
     public void addButtonEvent(EventListener listener) {
-    	if (listener == null) {
-    		return;
-    	}
-    	for (AccordionButton ab : PANELS.keySet()) {
-    		if (listener instanceof ActionListener) {
-    			ab.addActionListener((ActionListener)listener);
-    		} else if (listener instanceof MouseListener) {
-    			ab.addMouseListener((MouseListener)listener);
-    		} else if (listener instanceof ItemListener) {
-				ab.addItemListener((ItemListener)listener);
-    		}
-    	} // foreach button
+        if (listener == null) {
+            return;
+        }
+        for (AccordionButton ab : PANELS.keySet()) {
+            if (listener instanceof ActionListener) {
+                ab.addActionListener((ActionListener)listener);
+            } else if (listener instanceof MouseListener) {
+                ab.addMouseListener((MouseListener)listener);
+            } else if (listener instanceof ItemListener) {
+                ab.addItemListener((ItemListener)listener);
+            }
+        } // foreach button
     }
 
     @Override public void revalidate() {
-    	super.revalidate();
-    	if (getParent() == null) {return;}
-    	getParent().revalidate();
+        super.revalidate();
+        if (getParent() == null) {return;}
+        getParent().revalidate();
     }
 
     /**
@@ -183,19 +183,19 @@ public class AccordionPanel extends JPanel {
      */
     private class AccordionButton extends JToggleButton implements ItemListener {
 
-    	private String label;
+        private String label;
 
         /**
          * Construct a new accordion button given label.
          *
          * @param label     to display on the button.
          */
-       	public AccordionButton(String label) {
-    		this.label = label;
-        	setText(label);
-        	setHorizontalAlignment(LEFT);
-        	addMouseListener(new MouseAdapter() {
-        		private AccordionButton ab = null;
+        public AccordionButton(String label) {
+            this.label = label;
+            setText(label);
+            setHorizontalAlignment(LEFT);
+            addMouseListener(new MouseAdapter() {
+                private AccordionButton ab = null;
                 @Override public void mousePressed(MouseEvent e) {
                     if (buttonGroup != null && isSelected()) {
                         buttonGroup.clearSelection();
@@ -211,7 +211,7 @@ public class AccordionPanel extends JPanel {
                     }
                 } // mousePressed
             }); // addMouseListener
-        	addItemListener(this);
+            addItemListener(this);
             setRequestFocusEnabled(true);
         }
 
@@ -223,16 +223,16 @@ public class AccordionPanel extends JPanel {
          *
          * @param label     the display on the button.
          */
-    	@Override public void setText(String label) {
-        	final String template = "<html><body style=\"text-align: left;\">"
-    			+ "<span style=\"font-family: Canvas;\">{ICON}</span>"
-        		+ "<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>"
-    			+ "<span>{LABEL}</span>"
-        		+ "</body></html>";
+        @Override public void setText(String label) {
+            final String template = "<html><body style=\"text-align: left;\">"
+                + "<span style=\"font-family: Canvas;\">{ICON}</span>"
+                + "<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>"
+                + "<span>{LABEL}</span>"
+                + "</body></html>";
             String icon = MyFont.ICONS.get("BIG-ARROW-" + (isSelected() ? "DOWN" : "RIGHT"));
-        	super.setText(template
-    			.replace("{ICON}", icon)
-    			.replace("{LABEL}", label));
+            super.setText(template
+                .replace("{ICON}", icon)
+                .replace("{LABEL}", label));
         }
 
         /**
@@ -241,16 +241,16 @@ public class AccordionPanel extends JPanel {
         @Override public void itemStateChanged(ItemEvent e) {
             AccordionButton button = (AccordionButton)e.getSource();
             switch (e.getStateChange()) {
-    	        case ItemEvent.SELECTED:
-    	        	togglePanelVisibility(button, true);
-    	        	setText(this.label);
-    	        	break;
-    	        case ItemEvent.DESELECTED:
-    	        	togglePanelVisibility(button, false);
-    	        	setText(this.label);
-    	        	break;
+                case ItemEvent.SELECTED:
+                    togglePanelVisibility(button, true);
+                    setText(this.label);
+                    break;
+                case ItemEvent.DESELECTED:
+                    togglePanelVisibility(button, false);
+                    setText(this.label);
+                    break;
             }
-    	}
+        }
 
     } // AccordionButton
 

@@ -42,10 +42,10 @@ public class PopupPane
     /**
      * Construct a new popup with the given content.
      *
-     * @param popupPanel		the content pane.
+     * @param popupPanel        the content pane.
      */
     public PopupPane(Component popupPanel) {
-    	this.popupPanel = popupPanel;
+        this.popupPanel = popupPanel;
         setLayout(new BorderLayout());
         add(popupPanel, BorderLayout.CENTER);
         setBorder(new LineBorder(Color.BLACK, 1));
@@ -76,9 +76,9 @@ public class PopupPane
      * Sets the invoker of this popup menu -- the button in which
      * the popup menu menu is to be displayed. Orientation: Bottom left
      *
-     * @param invoker 			the <code>AbstractButton</code> in which
-     *          				the popup menu is displayed when clicked
-     * @param bgroup 			the button group for which invoker belongs
+     * @param invoker           the <code>AbstractButton</code> in which
+     *                          the popup menu is displayed when clicked
+     * @param bgroup            the button group for which invoker belongs
      * @param deselectOnClose   flag to deselect invoker, when popup closed
      */
     public void configInvoker(AbstractButton invoker,
@@ -98,18 +98,18 @@ public class PopupPane
      * Sets the invoker of this popup menu -- the button in which
      * the popup menu menu is to be displayed.
      *
-     * @param invoker 			the <code>AbstractButton</code> in which
-     *          				the popup menu is displayed when clicked
-     * @param bgroup 			the button group for which invoker belongs
+     * @param invoker           the <code>AbstractButton</code> in which
+     *                          the popup menu is displayed when clicked
+     * @param bgroup            the button group for which invoker belongs
      * @param deselectOnClose   flag to deselect invoker, when popup closed
-     * @param orientation		for which the popup will be displayed
-     * 							relative to the invoker
+     * @param orientation       for which the popup will be displayed
+     *                          relative to the invoker
      */
     public void configInvoker(AbstractButton invoker,
                            ButtonGroup bgroup,
                            boolean deselectOnClose,
                            int orientation) {
-    	configInvoker(invoker, bgroup, deselectOnClose);
+        configInvoker(invoker, bgroup, deselectOnClose);
         this.orientation = orientation;
     }
 
@@ -117,13 +117,13 @@ public class PopupPane
      * Sets the invoker of this popup menu -- the component in which
      * the popup menu menu is to be displayed. Orientation: Bottom left
      *
-     * @param invoker 		the <code>Component</code> in which the popup
-     *          			menu is displayed
+     * @param invoker       the <code>Component</code> in which the popup
+     *                      menu is displayed
      */
     public void configInvoker(Component invoker) {
-    	unsetInvoker();
+        unsetInvoker();
         if (invoker instanceof AbstractButton) {
-        	configInvoker((AbstractButton)invoker, null, false);
+            configInvoker((AbstractButton)invoker, null, false);
         } else {
             this.invoker = invoker;
             setInvoker(invoker);
@@ -136,22 +136,22 @@ public class PopupPane
      * Sets the invoker of this popup menu -- the component in which
      * the popup menu menu is to be displayed.
      *
-     * @param invoker 			the <code>Component</code> in which
-     *          				the popup menu is displayed
-     * @param orientation		for which the popup will be displayed
-     * 							relative to the invoker
+     * @param invoker           the <code>Component</code> in which
+     *                          the popup menu is displayed
+     * @param orientation       for which the popup will be displayed
+     *                          relative to the invoker
      */
     public void configInvoker(Component invoker, int orientation) {
-    	configInvoker(invoker);
+        configInvoker(invoker);
         this.orientation = orientation;
     }
 
     @Override public void revalidate() {
-    	if (popupPanel == null) {return;}
-		setVisible(false);
-		super.revalidate();
-		repaint();
-		invokePopup();
+        if (popupPanel == null) {return;}
+        setVisible(false);
+        super.revalidate();
+        repaint();
+        invokePopup();
     }
 
     @Override public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {unselect(e);}
@@ -177,8 +177,8 @@ public class PopupPane
      */
     private void invokePopup() {
         if (invoker == null) {
-        	show(null, 0, 0);
-        	return;
+            show(null, 0, 0);
+            return;
         }
         int width = getWidth();
         int height = getHeight();
@@ -186,10 +186,10 @@ public class PopupPane
         int prefHeight = popupPanel.getPreferredSize().height;
         int x = 0;
         if (height <= 0) {
-        	height = prefHeight;
+            height = prefHeight;
         }
         if (width <= 0) {
-        	width = prefWidth;
+            width = prefWidth;
         }
         switch (Math.abs(orientation)) {
             case CENTER:
@@ -199,7 +199,7 @@ public class PopupPane
                 x = invoker.getWidth() - width;
                 break;
         }
-    	show(invoker, x, orientation < 0 ? -height : invoker.getHeight());
+        show(invoker, x, orientation < 0 ? -height : invoker.getHeight());
     }
 
     /**

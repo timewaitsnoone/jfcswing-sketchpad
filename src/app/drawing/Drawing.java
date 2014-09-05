@@ -12,7 +12,7 @@ public interface Drawing extends Shape {
     /**
      * Invoked by application to paint drawing to the display.
      *
-     * @param g 	the Graphics context in which to paint
+     * @param g     the Graphics context in which to paint
      */
     public void draw(Graphics2D g);
 
@@ -46,10 +46,10 @@ public interface Drawing extends Shape {
      * Transforms the drawing with the given affine
      * transformation above the given anchor point.
      *
-     * @param at   		the transformation
+     * @param at        the transformation
      * @param anchorx   the X coordinate of the anchor point
      * @param anchory   the Y coordinate of the anchor point
-     * @return     		the transformation applied
+     * @return          the transformation applied
      */
     public AffineTransform transform(AffineTransform at,
                                 double anchorx, double anchory);
@@ -214,13 +214,13 @@ public interface Drawing extends Shape {
      *     translate(-anchorx, -anchory);    // S1: translate anchor to origin
      * </pre>
      *
-     * @param sx    	the factor by which coordinates are scaled along the
-     *              	X axis direction
-     * @param sy    	the factor by which coordinates are scaled along the
-     *              	Y axis direction
+     * @param sx        the factor by which coordinates are scaled along the
+     *                  X axis direction
+     * @param sy        the factor by which coordinates are scaled along the
+     *                  Y axis direction
      * @param anchorx   the X coordinate of the scaling anchor point
      * @param anchory   the Y coordinate of the scaling anchor point
-     * @return      	the transformation applied
+     * @return          the transformation applied
      */
     public AffineTransform scale(double sx, double sy,
                                 double anchorx, double anchory);
@@ -270,13 +270,13 @@ public interface Drawing extends Shape {
      *     translate(-anchorx, -anchory);    // S1: translate anchor to origin
      * </pre>
      *
-     * @param shx   	the multiplier by which coordinates are shifted in the
-     *              	direction of the positive X axis as a factor of their Y coordinate
-     * @param shy   	the multiplier by which coordinates are shifted in the
-     *              	direction of the positive Y axis as a factor of their X coordinate
+     * @param shx       the multiplier by which coordinates are shifted in the
+     *                  direction of the positive X axis as a factor of their Y coordinate
+     * @param shy       the multiplier by which coordinates are shifted in the
+     *                  direction of the positive Y axis as a factor of their X coordinate
      * @param anchorx   the X coordinate of the shearing anchor point
      * @param anchory   the Y coordinate of the shearing anchor point
-     * @return      	the transformation applied
+     * @return          the transformation applied
      */
     public AffineTransform shear(double shx, double shy,
                                 double anchorx, double anchory);
@@ -285,8 +285,8 @@ public interface Drawing extends Shape {
      * Transforms the drawing with a horizontal reflection
      * with the given Y-axis.
      *
-     * @param x	   	the x value of the Y axis
-     * @return     	the transformation applied
+     * @param x     the x value of the Y axis
+     * @return      the transformation applied
      */
     public AffineTransform reflectHorizontal(double y);
 
@@ -294,7 +294,7 @@ public interface Drawing extends Shape {
      * Transforms the drawing with a vertical reflection
      * with the Y-axis at the center of the drawing.
      *
-     * @return     	the transformation applied
+     * @return      the transformation applied
      */
     public AffineTransform reflectHorizontal();
 
@@ -302,8 +302,8 @@ public interface Drawing extends Shape {
      * Transforms the drawing with a vertical reflection
      * with the given X-axis.
      *
-     * @param y	   	the y value of X axis
-     * @return     	the transformation applied
+     * @param y     the y value of X axis
+     * @return      the transformation applied
      */
     public AffineTransform reflectVertical(double x);
 
@@ -311,7 +311,7 @@ public interface Drawing extends Shape {
      * Transforms the drawing with a vertical reflection
      * with the X-axis at the center of the drawing.
      *
-     * @return     	the transformation applied
+     * @return      the transformation applied
      */
     public AffineTransform reflectVertical();
 

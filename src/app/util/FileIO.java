@@ -8,7 +8,7 @@ import java.io.*;
  */
 public class FileIO {
 
-	private static FileIO self = new FileIO();
+    private static FileIO self = new FileIO();
 
     private FileIO() { } // Utility class
 

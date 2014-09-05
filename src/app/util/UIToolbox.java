@@ -24,9 +24,9 @@ public class UIToolbox {
      * @return      the constrasting foreground color
      */
     public static Color getContrastYIQ(Color bg) {
-    	if (bg == null) {
-    		return null;
-    	}
+        if (bg == null) {
+            return null;
+        }
         int r = bg.getRed();
         int g = bg.getGreen();
         int b = bg.getBlue();
@@ -49,8 +49,8 @@ public class UIToolbox {
      * @param   type        the type of the button.
      * @param   id          the button reference ID.
      * @param   icon        the name of the icon to place on the button
-     * @param 	size		the font point size
-     * @param	padding		the amount of padding around the button
+     * @param   size        the font point size
+     * @param   padding     the amount of padding around the button
      * @return              the button created.
      */
     public static AbstractButton createButton(int type, String id, String icon, String tooltip, float size, int padding) {
@@ -79,9 +79,9 @@ public class UIToolbox {
      * Attaches a popup pane to a button.
      * Returns the created popup.
      *
-     * @param invoker	           the button that invokes the popup panel
-     * @param popupPanel	       the popup panel to attach
-     * @param bgroup			   the button group for which button is contained (if applicable)
+     * @param invoker              the button that invokes the popup panel
+     * @param popupPanel           the popup panel to attach
+     * @param bgroup               the button group for which button is contained (if applicable)
      * @param orientation          the orientation of the placement of the popup.
      * @param deselectOnClose      flag for deselecting the button on close of popup
      * @return                     the popup created
@@ -92,8 +92,8 @@ public class UIToolbox {
             ButtonGroup bgroup,
             int orientation,
             boolean deselectOnClose) {
-    	PopupPane popup = new PopupPane(popupPanel);
-    	popup.configInvoker(invoker, bgroup, deselectOnClose, orientation);
+        PopupPane popup = new PopupPane(popupPanel);
+        popup.configInvoker(invoker, bgroup, deselectOnClose, orientation);
         return popup;
     }
 
@@ -102,17 +102,17 @@ public class UIToolbox {
      * given component. If the component is not a child of a popup,
      * return null.
      *
-     * @param comp		the component to get the popup of
-     * @return			the popup menu or null, if none found.
+     * @param comp      the component to get the popup of
+     * @return          the popup menu or null, if none found.
      */
     public static JPopupMenu getAncestorPopup(Component comp) {
-    	while (comp != null) {
-			if (comp instanceof JPopupMenu) {
-				return (JPopupMenu)comp;
-			}
-			comp = comp.getParent();
-		}
-    	return null;
+        while (comp != null) {
+            if (comp instanceof JPopupMenu) {
+                return (JPopupMenu)comp;
+            }
+            comp = comp.getParent();
+        }
+        return null;
     }
 
     /**
@@ -149,11 +149,11 @@ public class UIToolbox {
     /**
      * Draw the grid.
      * 
-     * @param g2d		the graphics context
+     * @param g2d       the graphics context
      */
     public static void drawGrid(Graphics2D g2d) {
-    	int w = (int)(AppConfig.zoom*AppConfig.size.width);
-    	int h = (int)(AppConfig.zoom*AppConfig.size.height);
+        int w = (int)(AppConfig.zoom*AppConfig.size.width);
+        int h = (int)(AppConfig.zoom*AppConfig.size.height);
         g2d.setColor(Color.LIGHT_GRAY);
         g2d.setStroke( new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[] {1.0f}, 0.0f) );
         for (int i = 0; i < w; i++) {

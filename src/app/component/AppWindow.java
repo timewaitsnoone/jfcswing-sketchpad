@@ -14,53 +14,53 @@ import app.util.FileOperations;
 
 public class AppWindow extends JFrame {
 
-	public AppWindow() {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		addWindowListener(new WindowAdapter() {
-			@Override public void windowClosing(WindowEvent e) {
-				int n = FileOperations.saveDrawing(true, false);
-				if (n == JOptionPane.YES_OPTION || n == JOptionPane.NO_OPTION) {
-					System.exit(0);
-				}
-			}
-		});
-		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+    public AppWindow() {
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override public void windowClosing(WindowEvent e) {
+                int n = FileOperations.saveDrawing(true, false);
+                if (n == JOptionPane.YES_OPTION || n == JOptionPane.NO_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
+        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new KeyEventDispatcher() {
             @Override public boolean dispatchKeyEvent(KeyEvent e) {
-				switch (e.getKeyCode()) {
-					case KeyEvent.VK_ESCAPE:
-						if (AppConfig.preview != null) {
-							AppConfig.preview = null;
-						}
-						if (AppConfig.selected != null) {
-							AppConfig.selected = null;
-						}
-						AppConfig.drawingArea.repaint();
-						break;
-					case KeyEvent.VK_DELETE:
-						if (AppConfig.mode == AppConfig.Mode.SELECT && AppConfig.selected != null) {
-							AppConfig.drawings.remove(AppConfig.selected);
-							AppConfig.selected = null;
-						}
-						AppConfig.drawingArea.repaint();
-						break;
-				}
-				if (e.isControlDown()) {
-					switch (e.getKeyCode()) {
-						case KeyEvent.VK_N: FileOperations.newDrawing(); break;
-						case KeyEvent.VK_O: FileOperations.openDrawing(); break;
-						case KeyEvent.VK_S: FileOperations.saveDrawing(false, false); break;
-					} // switch
-				}
-				return false;
-			}
-		});
-		getContentPane().add(new MainToolbar(), BorderLayout.NORTH);
-		getContentPane().add(new DrawingViewport(), BorderLayout.CENTER);
-		setMinimumSize(new Dimension(600, 480));
-		setPreferredSize(new Dimension(800, 600));
-		pack();
-	}
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_ESCAPE:
+                        if (AppConfig.preview != null) {
+                            AppConfig.preview = null;
+                        }
+                        if (AppConfig.selected != null) {
+                            AppConfig.selected = null;
+                        }
+                        AppConfig.drawingArea.repaint();
+                        break;
+                    case KeyEvent.VK_DELETE:
+                        if (AppConfig.mode == AppConfig.Mode.SELECT && AppConfig.selected != null) {
+                            AppConfig.drawings.remove(AppConfig.selected);
+                            AppConfig.selected = null;
+                        }
+                        AppConfig.drawingArea.repaint();
+                        break;
+                }
+                if (e.isControlDown()) {
+                    switch (e.getKeyCode()) {
+                        case KeyEvent.VK_N: FileOperations.newDrawing(); break;
+                        case KeyEvent.VK_O: FileOperations.openDrawing(); break;
+                        case KeyEvent.VK_S: FileOperations.saveDrawing(false, false); break;
+                    } // switch
+                }
+                return false;
+            }
+        });
+        getContentPane().add(new MainToolbar(), BorderLayout.NORTH);
+        getContentPane().add(new DrawingViewport(), BorderLayout.CENTER);
+        setMinimumSize(new Dimension(600, 480));
+        setPreferredSize(new Dimension(800, 600));
+        pack();
+    }
 
     /**
      * This class implements a viewpoint for the
@@ -91,15 +91,15 @@ public class AppWindow extends JFrame {
             setViewportView(inner);
             addMouseWheelListener(this);
         }
-		@Override
-		public void mouseWheelMoved(MouseWheelEvent e) {
-			JSlider zslider = AppConfig.zoomSlider;
-			if (e.getPreciseWheelRotation() > 0) { 
-				zslider.setValue(zslider.getValue() - 1);
-			} else if (e.getPreciseWheelRotation() < 0) {
-				zslider.setValue(zslider.getValue() + 1);
-			}
-		}
+        @Override
+        public void mouseWheelMoved(MouseWheelEvent e) {
+            JSlider zslider = AppConfig.zoomSlider;
+            if (e.getPreciseWheelRotation() > 0) {
+                zslider.setValue(zslider.getValue() - 1);
+            } else if (e.getPreciseWheelRotation() < 0) {
+                zslider.setValue(zslider.getValue() + 1);
+            }
+        }
     } // DrawingViewport
-    
+
 } // AppWindow

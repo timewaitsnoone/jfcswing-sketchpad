@@ -4,18 +4,18 @@ import java.awt.geom.*;
 
 /** Line drawing. */
 public class LineDrawing extends ShapeDrawing {
-	/**
-	 * Constructs and initializes a LineDrawing
+    /**
+     * Constructs and initializes a LineDrawing
      * from the specified coordinates.
-	 *
-     * @param x1 	the X coordinate of the start point
-     * @param y1 	the Y coordinate of the start point
-     * @param x2 	the X coordinate of the end point
-     * @param y2 	the Y coordinate of the end point
-	 */
-	public LineDrawing(double x1, double y1, double x2, double y2) {
-		super(new Line2D.Double(x1, y1, x2, y2));
-	}
+     *
+     * @param x1    the X coordinate of the start point
+     * @param y1    the Y coordinate of the start point
+     * @param x2    the X coordinate of the end point
+     * @param y2    the Y coordinate of the end point
+     */
+    public LineDrawing(double x1, double y1, double x2, double y2) {
+        super(new Line2D.Double(x1, y1, x2, y2));
+    }
 
     /**
      * Constructs and initializes a LineDrawing
