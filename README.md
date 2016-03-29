@@ -13,7 +13,7 @@ open, etc. Can you think of additional features that might be useful?
 
 ![Screenshot](images/screenshot.png)
 
-[See details](REQUIREMENTS.html)
+[See details](REQUIREMENTS.md)
 
 ### Note
 
