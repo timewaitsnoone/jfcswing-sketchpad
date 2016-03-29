@@ -11,7 +11,9 @@ inserting text; inserting an image from a file, operations for specifying line
 color, and thickness, and fill color; zoom in, zoom out, undo; save; save as…,
 open, etc. Can you think of additional features that might be useful?
 
-For more details, see: https://bitbucket.org/vwchu/cse3461-sketchpad/downloads/02.html
+![Screenshot](images/screenshot.png)
+
+[See details](REQUIREMENTS.html)
 
 ### Note
 
